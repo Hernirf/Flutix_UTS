@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "723880651007",
+    "project_id": "utsmobileflutix",
+    "storage_bucket": "utsmobileflutix.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723880651007:android:484fa57fb45270550c04ca",
+        "android_client_info": {
+          "package_name": "com.example.utsmobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMdM9YhW401e4m0tTTyS8qJe3GA1sOOcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
