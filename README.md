@@ -40,26 +40,26 @@ Aplikasi mobile ini menyajikan pengalaman menonton film yang nyaman dan praktis.
 
 ## FrontAnd
 - Dimas Abdi Yudha
-  1. Splash
-  2. sign in
-  3. sign up (sama edit profile)
-  4. user profile
-  5. confirmation
-  
+  + Splash
+  + sign in
+  + sign up (sama edit profile)
+  + user profile
+  + confirmation
+
 - Muhammad Rahman
-  1. Ticket detail
-  2. my ticket
-  3.  profile
-  4. wallet
-  5. wallet topup
-  6. success topup
+  + Ticket detail
+  + my ticket
+  +  profile
+  + wallet
+  + wallet topup
+  + success topup
 
 - Dimas Arya Nugraha
-  1. Home movies
-  2. movie detail
-  3. select place and date
-  4. select seat
-  5. checkout + checkout no saldo
-  6. succes checkout
+  + Home movies
+  + movie detail
+  + select place and date
+  + select seat
+  + checkout + checkout no saldo
+  + succes checkout
 
 
