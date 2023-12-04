@@ -34,3 +34,30 @@ Aplikasi mobile ini menyajikan pengalaman menonton film yang nyaman dan praktis.
  - [Figma Desain](https://www.figma.com/file/R8HN5ojyt1hKcm5uOuN01W/mobile-team?type=design&node-id=1911-2&mode=design&t=FbxTxNTf0EZCl7xo-0)
 
 
+## Backand
+- Herni Surtati
+- Ilham Ramadhan
+
+## Frontand
+- Muhammad Rahman
+    1. Ticket detail
+    2. my ticket
+    3.  profile
+    4. wallet
+    5. wallet topup
+    6. success topup
+
+- Dimas Arya Nugraha
+    1. Home movies
+    2. movie detail
+    3. select place and date
+    4. select seat
+    5. checkout + checkout no saldo
+    6. succes checkout
+
+- Dimas Abdi Yudha
+    1. Splash
+    2. sign in
+    3. sign up (sama edit profile)
+    4. user profile
+    5. confirmation
