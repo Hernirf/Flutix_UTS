@@ -1,14 +1,14 @@
 
 ## Authors
 
-- [@octokatherine](https://www.github.com/octokatherine)
-- [@octokatherine](https://www.github.com/octokatherine)
-- [@octokatherine](https://www.github.com/octokatherine)
-- [@octokatherine](https://www.github.com/octokatherine)
-- [@octokatherine](https://www.github.com/octokatherine)
+- [2109106001_Herni Suhartati](https://github.com/Hernirf)
+- [2109106005_Dimas Abdi Yudha](https://github.com/DimasYudha1223)
+- [2109106011_Ilham Ramadhan](https://github.com/rmdluy)
+- [2109106016_Muhammad Rahman](https://github.com/RhmnVin)
+- [2109106019_Dimas Arya Nugraha](https://www.github.com/)
 
 
-# Project Title
+# UTS Pemograman Piranti Bergerak (Flutix)
 
 A brief description of what this project does and who it's for
 
