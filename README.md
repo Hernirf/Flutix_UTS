@@ -25,39 +25,33 @@ Aplikasi mobile ini menyajikan pengalaman menonton film yang nyaman dan praktis.
 - Add more integrations
 
 
-## Typografi
+![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
 
- - [Font(Alfabet)](https://fonts.google.com/specimen/Raleway)
- - [Font(Numerik)](https://fonts.google.com/specimen/Oswald)
- - [Color](https://colorhunt.co/palette/fafafae0bb20841818000000)
- - [Icon](https://www.figma.com/community/plugin/740272380439725040)
- - [Figma Desain](https://www.figma.com/file/R8HN5ojyt1hKcm5uOuN01W/mobile-team?type=design&node-id=1911-2&mode=design&t=FbxTxNTf0EZCl7xo-0)
+## Color Reference
+
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Example Color | ![#0a192f](https://via.placeholder.com/10/0a192f?text=+) #0a192f |
+| Example Color | ![#f8f8f8](https://via.placeholder.com/10/f8f8f8?text=+) #f8f8f8 |
+| Example Color | ![#00b48a](https://via.placeholder.com/10/00b48a?text=+) #00b48a |
+| Example Color | ![#00d1a0](https://via.placeholder.com/10/00b48a?text=+) #00d1a0 |
 
 
-## Backand
-- Herni Surtati
-- Ilham Ramadhan
+## API Reference
 
-## Frontand
-- Muhammad Rahman
-    1. Ticket detail
-    2. my ticket
-    3.  profile
-    4. wallet
-    5. wallet topup
-    6. success topup
+#### Get all items
 
-- Dimas Arya Nugraha
-    1. Home movies
-    2. movie detail
-    3. select place and date
-    4. select seat
-    5. checkout + checkout no saldo
-    6. succes checkout
+```http
+  GET /api/items
+```
 
-- Dimas Abdi Yudha
-    1. Splash
-    2. sign in
-    3. sign up (sama edit profile)
-    4. user profile
-    5. confirmation
+
+#### Get item
+
+```http
+  GET /api/items/${id}
+```
+
+
+Takes two numbers and returns the sum.
+
