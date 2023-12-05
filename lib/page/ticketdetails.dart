@@ -20,7 +20,8 @@ class ticketdetails extends StatefulWidget {
 class _ticketdetailsState extends State<ticketdetails> {
   @override
   Widget build(BuildContext context) {
-    
+    double tinggi = MediaQuery.of(context).size.height;
+    double lebar = MediaQuery.of(context).size.width;
     final book = Provider.of<Bookingg>(context, listen: false);
     final data = Provider.of<olahData>(context, listen: false);
 
@@ -44,7 +45,7 @@ class _ticketdetailsState extends State<ticketdetails> {
         backgroundColor: Color.fromARGB(255, 149, 0, 194),
       ),
       body: Container(
-        width: 360,height: 660,
+        width: lebar,height: tinggi,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -126,7 +127,7 @@ class _ticketdetailsState extends State<ticketdetails> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Container(child: Image.asset("asset/qr.png"),),   
-                        Padding(padding: EdgeInsets.only(left: 0),child: Text(bookMy.id_order,style: TextStyle(color: Colors.white),),),                                   
+                        Padding(padding: EdgeInsets.only(left: 0,bottom: 10),child: Text(bookMy.id_order,style: TextStyle(color: Colors.white),),),                                   
                         ],
         
                     ),

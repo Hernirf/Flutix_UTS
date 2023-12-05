@@ -35,6 +35,8 @@ int index = 0;
 class _selectSeatState extends State<selectSeat> {
   @override
   Widget build(BuildContext context) {
+    double tinggi = MediaQuery.of(context).size.height;
+    double lebar = MediaQuery.of(context).size.width;
 final book = Provider.of<Bookingg>(context, listen: false);
 final data = Provider.of<olahData>(context, listen: false);
 
@@ -51,7 +53,8 @@ Booking bookMovie = book.myBooking;
         backgroundColor: Color.fromARGB(255, 149, 0, 194),
       ),
       body: Container(
-        width: 360,
+        width: lebar,
+        height: tinggi,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -78,7 +81,7 @@ Booking bookMovie = book.myBooking;
                         width: 30,
                       ),
                       Container(
-                        width: 300,
+                        width: lebar-60,
                         height: 20,
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
@@ -110,9 +113,10 @@ Booking bookMovie = book.myBooking;
               Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SizedBox(
-                        width: 37,
+                        width: 10,
                       ),
                       Text(
                         '1',
@@ -399,7 +403,7 @@ Booking bookMovie = book.myBooking;
                       SizedBox(
                         height: 40,
                       ),
-                      Row(
+                      Row(mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
                             width: 35,
@@ -457,9 +461,16 @@ Booking bookMovie = book.myBooking;
                             bookMovie.jumlah_tiket = book.bangku.length;
                             print(saldo_awal.toString());
                             if(saldo_awal>=bookMovie.total_tiket){
+                              setState(() {
+                                // bangkuu = [];
+                                kursi = '';
+                              });
                               Navigator.pushNamed(context, '/checkout');
                             }
                             else{
+                              setState(() {
+                                bangkuu = [];
+                              });
                               Navigator.pushNamed(context, '/checkoutf');
                             }
                             
@@ -480,8 +491,6 @@ Booking bookMovie = book.myBooking;
   }
 
   void _onSeatTap(String alphabet, int index) {
-
-
     if (alphabet == "A") {
       setState(() {
         seatStatus[index] = !seatStatus[index];

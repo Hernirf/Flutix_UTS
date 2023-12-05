@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utsmobile/komponen/alert.dart';
 
 import '../Olah_data.dart';
 
@@ -128,6 +129,11 @@ class _SignInPageState extends State<SignInPage> {
                         // dispose();
                       });
                       
+                      if (_email.value.text == "" || _pass.value.text == ""){
+                        alert msg = new alert();
+                        msg.showAlert(context, "seluruh textfield harus diisi");
+                      }
+                      else{
                       await data.login(_email.value.text, _pass.value.text);
                       print(data.userAuth!.email);
                           if (data.userAuth != null){
@@ -138,23 +144,12 @@ class _SignInPageState extends State<SignInPage> {
                                 Navigator.pushNamed(context, "/bottomnav");
                                 _email.dispose();
                                 _pass.dispose();
-                                
-                  
-                            }
-                            else{
-                              
-                              await data.signOut();
-
-                            }
-                            
-                
-                             
-                          }
-                     
+                            }  
+                          }}
                     },
                     child: Row(
                       children: [
-                        Text('Continue To Sign In',
+                        Text('Continue To Sign Up',
                             style: TextStyle(
                                 color: Color.fromARGB(
                                     255, 163, 64, 166))), // Atur warna teks

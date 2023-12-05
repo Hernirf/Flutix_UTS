@@ -12,10 +12,12 @@ class SuccessCheckoutPage extends StatefulWidget {
 class _SuccessCheckoutPageState extends State<SuccessCheckoutPage> {
   @override
   Widget build(BuildContext context) {
+    double tinggi = MediaQuery.of(context).size.height;
+    double lebar = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.transparent, // Atur latar belakang transparan
       body: Container(
-        width: 360,
+        width: lebar,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,

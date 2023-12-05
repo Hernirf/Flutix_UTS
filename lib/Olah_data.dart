@@ -65,6 +65,7 @@ Future<void> signOut() async {
       // Setelah logout, Anda bisa mengosongkan variabel yang menyimpan data pengguna.
       User? currentUser = _auth.currentUser;
       currentUser = null;
+      userAuth = null;
   }
     
   }

@@ -10,9 +10,11 @@ class successtopup extends StatefulWidget {
 class _successtopupState extends State<successtopup> {
   @override
   Widget build(BuildContext context) {
+    double tinggi = MediaQuery.of(context).size.height;
+    double lebar = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
-        width: 360,
+        width: lebar,
                 height: 660,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(

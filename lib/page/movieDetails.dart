@@ -16,6 +16,8 @@ class movieDetails extends StatefulWidget {
 class _movieDetailsState extends State<movieDetails> {
   @override
   Widget build(BuildContext context) {
+    double tinggi = MediaQuery.of(context).size.height;
+    double lebar = MediaQuery.of(context).size.width;
     final tmdbApi = Provider.of<TmdbApi>(context, listen: false);
     final data = Provider.of<olahData>(context, listen: false);
 
@@ -25,7 +27,7 @@ class _movieDetailsState extends State<movieDetails> {
       
       body:  SingleChildScrollView(
         child: Container(
-              width: 360,
+              width: lebar,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,

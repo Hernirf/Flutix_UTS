@@ -19,6 +19,8 @@ class CheckoutF extends StatefulWidget {
 class _CheckoutFState extends State<CheckoutF> {
   @override
   Widget build(BuildContext context) {
+    double tinggi = MediaQuery.of(context).size.height;
+    double lebar = MediaQuery.of(context).size.width;
     final tmdbApi = Provider.of<TmdbApi>(context, listen: false);
     final book = Provider.of<Bookingg>(context, listen: false);
     final data = Provider.of<olahData>(context, listen: false);
@@ -37,7 +39,7 @@ class _CheckoutFState extends State<CheckoutF> {
         backgroundColor: Color.fromARGB(255, 149, 0, 194),
       ),
       body: Container(
-        width: 360,
+        width: lebar,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -446,19 +448,21 @@ class _CheckoutFState extends State<CheckoutF> {
                 ),
                 InkWell(
                   onTap: () {
-                    book.bangku = [];
-                    book.myBooking.fee =0;
-                    book.myBooking.harga_tiket =0;
-                    book.myBooking.id_login ='';
-                    book.myBooking.id_order ='';
-                    book.myBooking.judul_film ='';
-                    book.myBooking.jumlah_tiket =0;
-                    book.myBooking.kursi ='';
-                    book.myBooking.posterUrl ='';
-                    book.myBooking.tanggal ='';
-                    book.myBooking.tempat ='';
-                    book.myBooking.total_tiket =0;
-                    book.myBooking.waktu ='';
+                    setState(() {
+                        book.bangku = const [];
+                        book.myBooking.fee =0;
+                        book.myBooking.harga_tiket =0;
+                        book.myBooking.id_login ='';
+                        book.myBooking.id_order ='';
+                        book.myBooking.judul_film ='';
+                        book.myBooking.jumlah_tiket =0;
+                        book.myBooking.kursi ='';
+                        book.myBooking.posterUrl ='';
+                        book.myBooking.tanggal ='';
+                        book.myBooking.tempat ='';
+                        book.myBooking.total_tiket =0;
+                        book.myBooking.waktu ='';
+                    });
                     Navigator.pushNamed(context, '/mywallet');
                   },
                   child: Text(

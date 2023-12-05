@@ -217,24 +217,37 @@ class _SignUpPageState extends State<SignUpPage> {
                 children: [
                   TextButton(
                     onPressed: () async {
-                      // if (data.userAuth != null){
-                      //    data.signOut();
-                      // }
-                      
+                      // print("object1");
+                      // await data.signOut();
+                      // print("object2");
+
                       if(_pass.text == _conpass.text){
-                        data.signUp(_email.text, _pass.text);
-                       
-                        if (data.userAuth != null){
+                         await  data.signUp(_email.text, _pass.text);
+                      print("object3");
+
+                        if ( data.userAuth != null){
+                      print("object5");
+
                          
                           print(_email.text);
-                          if(data.userAuth!.email == _email.text){
-                            final ref =  FirebaseStorage.instance.ref().child('user/$namaFile');
-                            await ref.putData(_image!);
-                            String downloadUrl = await FirebaseStorage.instance.ref().child('user/$namaFile').getDownloadURL();
-                            print(downloadUrl);
-                            await data.tambahDataKeFirestore(_username.text, _email.text, _pass.text, downloadUrl);
-                            data.findDocumentIDByFieldValue();
+                      print("objec6");
 
+                          print(data.userAuth!.email);
+
+                          if(data.userAuth!.email == _email.text){
+                      print("objec7");
+                            if(_image != null){
+                              final ref =  FirebaseStorage.instance.ref().child('user/$namaFile');
+                              await ref.putData(_image!);
+                              String downloadUrl = await FirebaseStorage.instance.ref().child('user/$namaFile').getDownloadURL();
+                              print(downloadUrl);
+                              await data.tambahDataKeFirestore(_username.text, _email.text, _pass.text, downloadUrl);
+                            }
+                            else{
+                              await data.tambahDataKeFirestore(_username.text, _email.text, _pass.text, "");
+                            }
+                            
+                            data.findDocumentIDByFieldValue();
                              print(data.idsignup + "ggg");
 
                             Navigator.pushNamed(context, "/userprofile");
@@ -244,15 +257,16 @@ class _SignUpPageState extends State<SignUpPage> {
                             _conpass.dispose();
                           }
                         }
+                        else{
+                          //  print(data.userAuth!.email);
+                          print("tidak ada");
+                        }
                           
                         //  print(SignUpPage().data);
                          
                          
                       }
-                      setState(() {
 
-                      });
-                      
                     },
                     child: Row(
                       children: [

@@ -20,6 +20,8 @@ class Checkout extends StatefulWidget {
 class _CheckoutState extends State<Checkout> {
   @override
   Widget build(BuildContext context) {
+    double tinggi = MediaQuery.of(context).size.height;
+    double lebar = MediaQuery.of(context).size.width;
     final tmdbApi = Provider.of<TmdbApi>(context, listen: false);
     final book = Provider.of<Bookingg>(context, listen: false);
     final data = Provider.of<olahData>(context, listen: false);
@@ -43,7 +45,7 @@ class _CheckoutState extends State<Checkout> {
         backgroundColor: Color.fromARGB(255, 149, 0, 194),
       ),
       body: Container(
-        width: 360,
+        width: lebar,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -108,48 +110,51 @@ class _CheckoutState extends State<Checkout> {
             SizedBox(
               height: 30,
             ),
-            Row(
-              children: [
-                SizedBox(width: 30),
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  SizedBox(width: 30),
+                  Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
                     ),
+                    child: Image.network(book.myBooking.posterUrl, fit: BoxFit.cover),
                   ),
-                  child: Image.network(book.myBooking.posterUrl, fit: BoxFit.cover),
-                ),
-                SizedBox(width: 20), 
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                     book.myBooking.judul_film,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Railway',
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                  SizedBox(width: 20), 
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                       book.myBooking.judul_film,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'Railway',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Horror - Korean",
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontFamily: 'Railway',
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
+                      SizedBox(
+                        height: 10,
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      Text(
+                        "Horror - Korean",
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontFamily: 'Railway',
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
             SizedBox(
               height: 20,
@@ -446,6 +451,7 @@ class _CheckoutState extends State<Checkout> {
               height: 70,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
                   width: 100,
@@ -455,7 +461,9 @@ class _CheckoutState extends State<Checkout> {
                     dynamic saldo_awal = await data.getFieldById("saldo", data.idlogin);
                     await users.doc(data.idlogin).update({'saldo': saldo_awal-book.myBooking.total_tiket});
                     book.tambahDataBookKeFirestore(id, book.myBooking.judul_film, book.myBooking.tanggal, book.myBooking.tempat, book.myBooking.kursi, book.myBooking.waktu, book.myBooking.id_order, book.myBooking.posterUrl, book.myBooking.harga_tiket, book.myBooking.total_tiket, book.myBooking.fee, book.myBooking.jumlah_tiket);
-                    book.bangku = const [];
+                    setState(() {
+                        book.bangku = const [];
+                    // print( book.bangku + "ddd");
                     book.myBooking.fee =0;
                     book.myBooking.harga_tiket =0;
                     book.myBooking.id_login ='';
@@ -468,8 +476,10 @@ class _CheckoutState extends State<Checkout> {
                     book.myBooking.tempat ='';
                     book.myBooking.total_tiket =0;
                     book.myBooking.waktu ='';
+                    });
+                    
                     Navigator.pushNamed(context, '/successcheckout');
-                    setState(() {});
+                    
                   },
                   child: Text(
                     "Checkout Now",

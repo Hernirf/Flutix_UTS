@@ -14,13 +14,15 @@ class profile extends StatefulWidget {
 class _profileState extends State<profile> {
   @override
   Widget build(BuildContext context) {
+    double tinggi = MediaQuery.of(context).size.height;
+    double lebar = MediaQuery.of(context).size.width;
     final data = Provider.of<olahData>(context, listen: false);
     // final tmdbApi = Provider.of<TmdbApi>(context, listen: false);
     final String id = data.idlogin;
     return Scaffold(
       body: Container(
         padding: EdgeInsets.only(top: 20),
-        width: 360,
+        width: lebar,
         // height: 660,
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -37,21 +39,16 @@ class _profileState extends State<profile> {
             StreamBuilder<DocumentSnapshot>(
               stream: data.users.doc(id).snapshots(),
               builder: (_, snapshot) {
-                return Container(
-                  padding: EdgeInsets.only(top: 50),
-                  width: 80,
-                  height: 80,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(100),
-                      image: DecorationImage(
-                      image: NetworkImage(snapshot.data!.get("urlPoto")), // Ganti dengan path gambar Anda
-                      fit: BoxFit.cover,
-                    ),
-                      
-                      ),
-                      
-                      
-                  // child: Image.network(snapshot.data!.get("urlPoto"), fit: BoxFit.cover,),
+                return InkWell(
+                  onTap: () {
+                    print(snapshot.data!.get("urlPoto"));
+                    // print('tes');
+                  },
+                  child: CircleAvatar(
+                    backgroundImage:
+                        NetworkImage(snapshot.data!.get("urlPoto")),
+                    radius: 50,
+                  ),
                 );
               }
             ),

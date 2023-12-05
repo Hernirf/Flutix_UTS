@@ -31,9 +31,11 @@ class _edit_profileState extends State<edit_profile> {
 
    Future<List<String>> fetchData() async {
     final data = Provider.of<olahData>(context, listen: false);
+    print(data.idlogin);
+    print(await data.getFieldById("fullname", data.idlogin));
     // Contoh penundaan untuk mensimulasikan operasi async
     List<String> edit = [];
-    edit.add(await data.getFieldById("username", data.idlogin));
+    edit.add(await data.getFieldById("fullname", data.idlogin));
     edit.add(await data.getFieldById("pass", data.idlogin));
     return edit;
   }
@@ -206,22 +208,35 @@ class _edit_profileState extends State<edit_profile> {
               ),
               SizedBox(height: 50),
                ElevatedButton(
-                        onPressed: () async {
-                          if(_pass.text == _conpass.text){
-                          if (data.userAuth != null){
+                    onPressed: () async {
+                      if(_pass.text == _conpass.text){
+                        print("object");
+                      if (data.userAuth != null){
+                        print("object2");
+
+                          if(_image!=null){
                           final ref =  FirebaseStorage.instance.ref().child('user/$namaFile');
-                          await ref.putData(_image!);
-                          String downloadUrl = await FirebaseStorage.instance.ref().child('user/$namaFile').getDownloadURL();
-                          print(downloadUrl);
-                          await users.doc(data.idlogin).update({'fullname': _username.text, 'pass': _pass.text, 'urlPoto':downloadUrl});
+                            await ref.putData(_image!);
+                            String downloadUrl = await FirebaseStorage.instance.ref().child('user/$namaFile').getDownloadURL();
+                            print(downloadUrl);
+                            await users.doc(data.idlogin).update({'fullname': _username.text, 'pass': _pass.text, 'urlPoto':downloadUrl});
+                      
+                          }
+                          else{ 
+                        print("object3");
+
+                            await users.doc(data.idlogin).update({'fullname': _username.text, 'pass': _pass.text});
+                        print("object4");
+
+                          }
                           Navigator.pushNamed(context, '/bottomnav2');
 
-                          // Navigator.push(context, 
-                          // MaterialPageRoute(builder: (context) => const bottomnav(2)));
-                        
-                        }
-                         
-                      }
+                      // Navigator.push(context, 
+                      // MaterialPageRoute(builder: (context) => const bottomnav(2)));
+                    
+                    }
+                      
+                  }
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xFF7015A8),

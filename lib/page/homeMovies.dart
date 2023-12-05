@@ -10,7 +10,7 @@ import '../api.dart';
 import '../models/movie.dart';
 
 class homeMovies extends StatelessWidget {
-   homeMovies({super.key});
+  homeMovies({super.key});
 
   List daftarMovies = [
     Movies(gambar: "asset/pp9.jpg"),
@@ -19,18 +19,18 @@ class homeMovies extends StatelessWidget {
     Movies(gambar: "asset/pp12.jpeg")
   ];
 
-  
-
   @override
   Widget build(BuildContext context) {
+    double tinggi = MediaQuery.of(context).size.height;
+    double lebar = MediaQuery.of(context).size.width;
     final data = Provider.of<olahData>(context, listen: false);
     final tmdbApi = Provider.of<TmdbApi>(context, listen: false);
-    
+
     var id = data.idlogin;
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
-        width: 360,
+        width: lebar,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -48,46 +48,45 @@ class homeMovies extends StatelessWidget {
               child: Row(
                 children: [
                   StreamBuilder<DocumentSnapshot>(
-                    stream: data.users.doc(id).snapshots(),
-                    builder: (_, snapshot) {
-                      return InkWell(
-                        onTap: () {
-                          print(snapshot.data!.get("urlPoto"));
-                          print('tes');
-                        },
-                        child: CircleAvatar(
-                          backgroundImage: NetworkImage(snapshot.data!.get("urlPoto")),
-                          radius: 30,
-                        ),
-                      );
-                    }
-                  ),
+                      stream: data.users.doc(id).snapshots(),
+                      builder: (_, snapshot) {
+                        return InkWell(
+                          onTap: () {
+                            print(snapshot.data!.get("urlPoto"));
+                            print('tes');
+                          },
+                          child: CircleAvatar(
+                            backgroundImage:
+                                NetworkImage(snapshot.data!.get("urlPoto")),
+                            radius: 30,
+                          ),
+                        );
+                      }),
                   SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                     StreamBuilder<DocumentSnapshot>(
-                        stream: data.users.doc(id).snapshots(),
-                        builder: (_, snapshot) {
-                       return Text(snapshot.data!.get("fullname"),
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'Railway',
-                                color: Colors.white,
-                              ));
-                        }
-                      ),
                       StreamBuilder<DocumentSnapshot>(
-                        stream: data.users.doc(id).snapshots(),
-                        builder: (_, snapshot) {
-                          return Text('Rp.'+ snapshot.data!.get("saldo").toString(),
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'Railway',
-                                color: Colors.white,
-                              ));
-                        }
-                      ),
+                          stream: data.users.doc(id).snapshots(),
+                          builder: (_, snapshot) {
+                            return Text(snapshot.data!.get("fullname"),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'Railway',
+                                  color: Colors.white,
+                                ));
+                          }),
+                      StreamBuilder<DocumentSnapshot>(
+                          stream: data.users.doc(id).snapshots(),
+                          builder: (_, snapshot) {
+                            return Text(
+                                'Rp.' + snapshot.data!.get("saldo").toString(),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'Railway',
+                                  color: Colors.white,
+                                ));
+                          }),
                     ],
                   ),
                 ],
@@ -118,15 +117,15 @@ class homeMovies extends StatelessWidget {
               height: 15,
             ),
             FutureBuilder(
-                 future: tmdbApi.fetchNowPlayingMovies(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                future: tmdbApi.fetchNowPlayingMovies(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else {
-                  List<Movie> movies = snapshot.data!;
-                  return Container(
+                    List<Movie> movies = snapshot.data!;
+                    return Container(
                       height: 130,
                       width: 250,
                       child: Expanded(
@@ -135,17 +134,13 @@ class homeMovies extends StatelessWidget {
                             itemCount: movies.length,
                             itemBuilder: (context, index) {
                               return homeMoviesTile(
-                                  movies: movies[index],
-                            );
+                                movies: movies[index],
+                              );
                             }),
                       ),
-                    
-                  );
-                }
-                }
-              ),
-            
-  
+                    );
+                  }
+                }),
             const SizedBox(height: 50),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
@@ -314,41 +309,40 @@ class homeMovies extends StatelessWidget {
             ),
             SizedBox(height: 10),
             FutureBuilder(
-            future: tmdbApi.fetchComingSoonMovies(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-              List<Movie> movies = snapshot.data!;
-                return Container(
-                  height: 130,
-                  width: 250,
-                  child: Expanded(
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: movies.length,
-                        itemBuilder: (context, index) {
-                          return homeMoviesTile(
-                            movies: movies[index],
-                          );
-                        }),
-                  ),
-                );
-              }
-            }
-            ),
+                future: tmdbApi.fetchComingSoonMovies(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else {
+                    List<Movie> movies = snapshot.data!;
+                    return Container(
+                      height: 130,
+                      width: 250,
+                      child: Expanded(
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: movies.length,
+                            itemBuilder: (context, index) {
+                              return homeMoviesTile(
+                                movies: movies[index],
+                              );
+                            }),
+                      ),
+                    );
+                  }
+                }),
             SizedBox(
               height: 70,
             ),
             Container(
               decoration: BoxDecoration(
-                
                 color: Colors.black,
                 borderRadius: BorderRadius.circular(5),
                 image: DecorationImage(
-                  image: AssetImage('asset/diskon.jpg'), // Ganti dengan path gambar Anda
+                  image: AssetImage(
+                      'asset/diskon.jpg'), // Ganti dengan path gambar Anda
                   fit: BoxFit.cover,
                 ),
               ),
@@ -363,7 +357,6 @@ class homeMovies extends StatelessWidget {
           ],
         ),
       ),
-     
     );
   }
 }
