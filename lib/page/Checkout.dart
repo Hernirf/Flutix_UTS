@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utsmobile/Booking_provider.dart';
 import 'package:utsmobile/Olah_data.dart';
+import 'package:utsmobile/page/selectPlaceDate.dart';
+import 'CheckoutF.dart';
+import 'selectSeat.dart';
 
 import '../api.dart';
 import '../models/booking.dart';
@@ -20,6 +23,7 @@ class Checkout extends StatefulWidget {
 class _CheckoutState extends State<Checkout> {
   @override
   Widget build(BuildContext context) {
+    selectPlaceDate resettanggal = new selectPlaceDate();
     double tinggi = MediaQuery.of(context).size.height;
     double lebar = MediaQuery.of(context).size.width;
     final tmdbApi = Provider.of<TmdbApi>(context, listen: false);
@@ -29,7 +33,7 @@ class _CheckoutState extends State<Checkout> {
     final Movie movie = tmdbApi.myMovie;
      FirebaseFirestore db = FirebaseFirestore.instance;
     CollectionReference users = db.collection("users");
-
+    selectSeat resetkursi = new selectSeat();
 
 
     return Scaffold(
@@ -514,7 +518,19 @@ class _CheckoutState extends State<Checkout> {
                     book.myBooking.tanggal ='';
                     book.myBooking.tempat ='';
                     book.myBooking.total_tiket =0;
-                    book.myBooking.waktu ='';
+                    
+                    for (int i=0;i<3;i++){
+                      chooseBM[i]=false;
+                      chooseCGV[i]=false;
+                      chooseCS[i]=false;
+                    }
+                    for (int i=0;i<4;i++){
+                      chooseHari[i] = false;
+                    }
+                    // for(int i =0;i<7;i++){
+                      
+                    // }
+                    
                     Navigator.pushNamed(context, '/successcheckout');
                     
                   
