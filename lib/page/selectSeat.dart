@@ -39,17 +39,15 @@ class selectSeatState extends State<selectSeat> {
     final data = Provider.of<olahData>(context, listen: false);
 
     // bool? reset;
-    // if (reset == true){
+    // if (reset == true) {
     //   for (int i = 0; i < 7; i++) {
-    //   onSeatTap("A", i, kosongin: true);
-      
-    // }
+    //     onSeatTap("A", i, kosongin: true);
+    //   }
     //   for (int i = 0; i < 7; i++) {
-    //   onSeatTap("A", i);
+    //     onSeatTap("A", i);
     //   }
     //   reset = false;
     // }
-    
 
     Booking bookMovie = book.myBooking;
     return Scaffold(
@@ -510,6 +508,11 @@ class selectSeatState extends State<selectSeat> {
       if (kosongin == true) {
         setState(() {
           seatStatus[index] = true;
+          if (seatStatus[index] == false) {
+            bangkuu.remove('${alphabet + (index + 1).toString()}');
+          } else {
+            bangkuu.add('${alphabet + (index + 1).toString()}');
+          }
         });
       } else {
         setState(() {

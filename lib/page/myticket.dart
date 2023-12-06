@@ -19,12 +19,14 @@ class _myticketState extends State<myticket> {
   Widget build(BuildContext context) {
     final data = Provider.of<olahData>(context, listen: false);
     final BookProvider = Provider.of<Bookingg>(context, listen: false);
+    double tinggi = MediaQuery.of(context).size.height;
+    double lebar = MediaQuery.of(context).size.width;
     return Scaffold(
       body: ListView(
         children: [
           Container(
             padding: EdgeInsets.only(top: 20),
-            height: 660,
+            height: tinggi,
             decoration: BoxDecoration(
               gradient: LinearGradient(
             begin: Alignment.topCenter,
