@@ -29,24 +29,18 @@ class _UserProfilePageState extends State<UserProfilePage> {
   bool isEnglishSelected = false;
   bool isFrenchSelected = false;
   bool isJapaneseSelected = false;
-  List <String> bahasa = [];
-  List <String> genre = [];
+  List<String> bahasa = [];
+  List<String> genre = [];
 
   var bahasas = "";
   var genree = "";
 
-
-
-  
-  
   @override
   Widget build(BuildContext context) {
-  // var dataID = data.getID();
-  FirebaseFirestore db = FirebaseFirestore.instance;
-  CollectionReference users = db.collection("users");
-  final data = Provider.of<olahData>(context, listen: false);
-
-
+    // var dataID = data.getID();
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    CollectionReference users = db.collection("users");
+    final data = Provider.of<olahData>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -59,12 +53,12 @@ class _UserProfilePageState extends State<UserProfilePage> {
               ),
             )),
         titleSpacing: 50,
-        backgroundColor: Color.fromARGB(255, 149, 0, 194),
+        backgroundColor: const Color.fromARGB(255, 149, 0, 194),
       ),
       body: Container(
         width: 360,
         height: 740,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -79,13 +73,13 @@ class _UserProfilePageState extends State<UserProfilePage> {
           child: Center(
             child: Column(
               children: [
-                Align(
+                const Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 8),
+                    padding: EdgeInsets.only(top: 20, left: 8),
                   ),
                 ),
-                Text(
+                const Text(
                   'Select Your',
                   style: TextStyle(
                     fontSize: 24,
@@ -93,7 +87,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     color: Colors.white, // Atur warna teks
                   ),
                 ),
-                Text(
+                const Text(
                   'Genre',
                   style: TextStyle(
                     fontSize: 24,
@@ -102,13 +96,13 @@ class _UserProfilePageState extends State<UserProfilePage> {
                         Color.fromARGB(255, 126, 233, 255), // Atur warna teks
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 // Menggunakan Row untuk susunan genre 3 di sebelah kiri
                 Column(
                   children: [
                     Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 32,
                         ),
                         InkWell(
@@ -116,7 +110,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             genre.add("war");
                           },
                           child: Container(
-                            child: Image.asset("asset/war.jpg", fit: BoxFit.cover,),
+                            child: Image.asset(
+                              "asset/war.jpg",
+                              fit: BoxFit.cover,
+                            ),
                             height: 80,
                             width: 140,
                             decoration: BoxDecoration(
@@ -124,15 +121,16 @@ class _UserProfilePageState extends State<UserProfilePage> {
                                 borderRadius: BorderRadius.circular(20)),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         InkWell(
                           onTap: () {
-                             genre.add("drama");
+                            genre.add("drama");
                           },
                           child: Container(
-                            child: Image.asset("asset/band.jpg", fit: BoxFit.cover),
+                            child: Image.asset("asset/band.jpg",
+                                fit: BoxFit.cover),
                             height: 80,
                             width: 140,
                             decoration: BoxDecoration(
@@ -145,7 +143,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   ],
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 // Menggunakan Row untuk susunan genre 3 di sebelah kiri
@@ -153,15 +151,16 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   children: [
                     Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 32,
                         ),
                         InkWell(
                           onTap: () {
-                             genre.add("horor");
+                            genre.add("horor");
                           },
                           child: Container(
-                            child: Image.asset("asset/chucky1.png", fit: BoxFit.cover),
+                            child: Image.asset("asset/chucky1.png",
+                                fit: BoxFit.cover),
                             height: 80,
                             width: 140,
                             decoration: BoxDecoration(
@@ -169,15 +168,16 @@ class _UserProfilePageState extends State<UserProfilePage> {
                                 borderRadius: BorderRadius.circular(20)),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         InkWell(
                           onTap: () {
-                             genre.add("Fantasi");
+                            genre.add("Fantasi");
                           },
                           child: Container(
-                            child: Image.asset("asset/thomas.jpg", fit: BoxFit.cover),
+                            child: Image.asset("asset/thomas.jpg",
+                                fit: BoxFit.cover),
                             height: 80,
                             width: 140,
                             decoration: BoxDecoration(
@@ -190,7 +190,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   ],
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 // Menggunakan Row untuk susunan genre 3 di sebelah kiri
@@ -198,15 +198,16 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   children: [
                     Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 32,
                         ),
                         InkWell(
                           onTap: () {
-                             genre.add("cinema");
+                            genre.add("cinema");
                           },
                           child: Container(
-                            child: Image.asset("asset/movies.png", fit: BoxFit.cover),
+                            child: Image.asset("asset/movies.png",
+                                fit: BoxFit.cover),
                             height: 80,
                             width: 140,
                             decoration: BoxDecoration(
@@ -214,15 +215,17 @@ class _UserProfilePageState extends State<UserProfilePage> {
                                 borderRadius: BorderRadius.circular(20)),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         InkWell(
                           onTap: () {
-                             genre.add("romen");
+                            genre.add("romen");
                           },
                           child: Container(
-                            child: Image.asset("asset/Cinderella or Monster.jpg", fit: BoxFit.cover),
+                            child: Image.asset(
+                                "asset/Cinderella or Monster.jpg",
+                                fit: BoxFit.cover),
                             height: 80,
                             width: 140,
                             decoration: BoxDecoration(
@@ -234,8 +237,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     )
                   ],
                 ),
-                SizedBox(height: 30),
-                Text(
+                const SizedBox(height: 30),
+                const Text(
                   'Which Movie Language You Prefer?',
                   style: TextStyle(
                     fontSize: 18,
@@ -243,11 +246,11 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   ),
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
-                  color: Color.fromARGB(255, 208, 165, 203),
+                  color: const Color.fromARGB(255, 208, 165, 203),
                   width: 300,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -259,26 +262,24 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextButton(
                       onPressed: () {
-                        for(var bahasass in bahasa){
+                        for (var bahasass in bahasa) {
                           bahasas = bahasas + '$bahasass, ';
-                          
-
                         }
-                        for(var genreek in genre){
+                        for (var genreek in genre) {
                           genree = genree + '$genreek, ';
-                          
-
                         }
-                         users.doc(data.idsignup).update({'bahasa': bahasas, 'genre': genree});
-                         Navigator.pushNamed(context, "/confirm");
+                        users
+                            .doc(data.idsignup)
+                            .update({'bahasa': bahasas, 'genre': genree});
+                        Navigator.pushNamed(context, "/confirm");
                       },
-                      child: Row(
+                      child: const Row(
                         children: [
                           Text('Continue To Confirmation',
                               style: TextStyle(
@@ -320,7 +321,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
         ),
         Text(
           genreName,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             color: Colors.white,
           ),
@@ -333,7 +334,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
   Widget _buildLanguageOption(String language, bool isSelected) {
     return ListTile(
       title: Text(language,
-          style: TextStyle(color: Color.fromARGB(255, 70, 62, 153))),
+          style: const TextStyle(color: Color.fromARGB(255, 70, 62, 153))),
       trailing: Checkbox(
         value: isSelected,
         onChanged: (bool? value) {
@@ -359,7 +360,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
           });
         },
       ),
-      contentPadding: EdgeInsets.all(0),
+      contentPadding: const EdgeInsets.all(0),
     );
   }
 }

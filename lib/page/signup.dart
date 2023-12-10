@@ -7,12 +7,9 @@ import 'package:utsmobile/page/user_profile.dart';
 import 'dart:html' as html;
 import 'dart:typed_data';
 
-
 class SignUpPage extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();
-   
- 
 }
 
 class _SignUpPageState extends State<SignUpPage> {
@@ -20,10 +17,10 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _conpass = TextEditingController();
-   Uint8List? _image;
-    String namaFile ='';
+  Uint8List? _image;
+  String namaFile = '';
 
-   @override
+  @override
   void initState() {
     super.initState();
     // Lakukan inisialisasi atau langganan sumber daya di sini
@@ -32,13 +29,12 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   void dispose() {
     // Lakukan tindakan bersih di sini
-    _email.dispose(); 
+    _email.dispose();
     _pass.dispose();
-    super.dispose(); 
+    super.dispose();
   }
 
   Future<void> _uploadImage() async {
-    
     // final html.InputElement input = html.FileUploadInputElement()..accept = 'image/*';
     final html.FileUploadInputElement input = html.FileUploadInputElement();
     input.accept = 'user/*';
@@ -54,20 +50,15 @@ class _SignUpPageState extends State<SignUpPage> {
           final Uint8List data = reader.result as Uint8List;
           _image = data;
           namaFile = file.name;
-    
         });
       }
     });
   }
- 
- 
-
 
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<olahData>(context, listen: false);
 
-    
     //  DocumentReference doc = doc.id;
 
     return Scaffold(
@@ -76,14 +67,13 @@ class _SignUpPageState extends State<SignUpPage> {
           onTap: () async {
             await data.signOut();
             Navigator.pushNamed(context, "/signin");
-
           },
           child: Image.asset("asset/back.png"),
         ),
-        backgroundColor: Color.fromARGB(255, 149, 0, 194),
+        backgroundColor: const Color.fromARGB(255, 149, 0, 194),
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -101,8 +91,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 onTap: () {
                   _uploadImage();
                 },
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 30),
+                child: const Padding(
+                  padding: EdgeInsets.only(top: 30),
                   child: CircleAvatar(
                     radius: 50,
                     backgroundColor: Color.fromARGB(255, 102, 80, 202),
@@ -115,8 +105,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              Column(
+              const SizedBox(height: 20),
+              const Column(
                 children: [
                   Text(
                     'Create Your',
@@ -135,19 +125,19 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Full Name',
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                     TextFormField(
                       controller: _username,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Type Here',
                         hintStyle:
                             TextStyle(color: Color.fromARGB(255, 92, 195, 232)),
@@ -160,14 +150,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         fillColor: Color.fromARGB(255, 102, 80, 202),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Email Address',
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                     TextFormField(
                       controller: _email,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Type Here',
                         hintStyle:
                             TextStyle(color: Color.fromARGB(255, 92, 195, 232)),
@@ -176,14 +166,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         fillColor: Color.fromARGB(255, 102, 80, 202),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Password',
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                     TextFormField(
                       controller: _pass,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Type Here',
                         hintStyle:
                             TextStyle(color: Color.fromARGB(255, 92, 195, 232)),
@@ -192,14 +182,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         fillColor: Color.fromARGB(255, 102, 80, 202),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Confirm Password',
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                     TextFormField(
                       controller: _conpass,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Type Here',
                         hintStyle:
                             TextStyle(color: Color.fromARGB(255, 92, 195, 232)),
@@ -211,7 +201,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -221,34 +211,40 @@ class _SignUpPageState extends State<SignUpPage> {
                       // await data.signOut();
                       // print("object2");
 
-                      if(_pass.text == _conpass.text){
-                         await  data.signUp(_email.text, _pass.text);
-                      print("object3");
+                      if (_pass.text == _conpass.text) {
+                        await data.signUp(_email.text, _pass.text);
+                        print("object3");
 
-                        if ( data.userAuth != null){
-                      print("object5");
+                        if (data.userAuth != null) {
+                          print("object5");
 
-                         
                           print(_email.text);
-                      print("objec6");
+                          print("objec6");
 
                           print(data.userAuth!.email);
 
-                          if(data.userAuth!.email == _email.text){
-                      print("objec7");
-                            if(_image != null){
-                              final ref =  FirebaseStorage.instance.ref().child('user/$namaFile');
+                          if (data.userAuth!.email == _email.text) {
+                            print("objec7");
+                            if (_image != null) {
+                              final ref = FirebaseStorage.instance
+                                  .ref()
+                                  .child('user/$namaFile');
                               await ref.putData(_image!);
-                              String downloadUrl = await FirebaseStorage.instance.ref().child('user/$namaFile').getDownloadURL();
+                              String downloadUrl = await FirebaseStorage
+                                  .instance
+                                  .ref()
+                                  .child('user/$namaFile')
+                                  .getDownloadURL();
                               print(downloadUrl);
-                              await data.tambahDataKeFirestore(_username.text, _email.text, _pass.text, downloadUrl);
+                              await data.tambahDataKeFirestore(_username.text,
+                                  _email.text, _pass.text, downloadUrl);
+                            } else {
+                              await data.tambahDataKeFirestore(
+                                  _username.text, _email.text, _pass.text, "");
                             }
-                            else{
-                              await data.tambahDataKeFirestore(_username.text, _email.text, _pass.text, "");
-                            }
-                            
+
                             data.findDocumentIDByFieldValue();
-                             print(data.idsignup + "ggg");
+                            print(data.idsignup + "ggg");
 
                             Navigator.pushNamed(context, "/userprofile");
                             _username.dispose();
@@ -256,19 +252,15 @@ class _SignUpPageState extends State<SignUpPage> {
                             _pass.dispose();
                             _conpass.dispose();
                           }
-                        }
-                        else{
+                        } else {
                           //  print(data.userAuth!.email);
                           print("tidak ada");
                         }
-                          
-                        //  print(SignUpPage().data);
-                         
-                         
-                      }
 
+                        //  print(SignUpPage().data);
+                      }
                     },
-                    child: Row(
+                    child: const Row(
                       children: [
                         Text(
                           'Continue To Sign Up',

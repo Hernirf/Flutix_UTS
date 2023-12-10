@@ -26,11 +26,11 @@ class _bottomnavState extends State<bottomnav> {
   Widget image2 = Image.asset("asset/ticket.png");
   Widget image3 = Image.asset("asset/profile.png");
   Color color1 = Colors.white;
-  Color color2 = Color(0xFFA340A6);
+  Color color2 = const Color(0xFFA340A6);
   final List<Widget> _children = [
     homeMovies(),
-    myticket(),
-    profile(),
+    const myticket(),
+    const profile(),
   ];
 
   @override
@@ -38,10 +38,11 @@ class _bottomnavState extends State<bottomnav> {
     super.initState();
     currentIndex = widget.idx;
   }
+
   Widget build(BuildContext context) {
     final data = Provider.of<olahData>(context, listen: false);
 
-  // int currentIndex = data.index;
+    // int currentIndex = data.index;
 
     void button() {
       setState(() {
@@ -49,12 +50,10 @@ class _bottomnavState extends State<bottomnav> {
           image1 = Image.asset("asset/movies2.png");
           image2 = Image.asset("asset/ticket.png");
           image3 = Image.asset("asset/profile.png");
-
         } else if (currentIndex == 1) {
           image1 = Image.asset("asset/movies.png");
           image2 = Image.asset("asset/tiket2.png");
           image3 = Image.asset("asset/profile.png");
-
         } else if (currentIndex == 2) {
           image1 = Image.asset("asset/movies.png");
           image2 = Image.asset("asset/ticket.png");
@@ -70,11 +69,9 @@ class _bottomnavState extends State<bottomnav> {
         children: _children,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color.fromARGB(255, 39, 26, 84),
-        selectedLabelStyle:
-            TextStyle(color: Colors.white),
-        unselectedLabelStyle:
-            TextStyle(color: Colors.white),
+        backgroundColor: const Color.fromARGB(255, 39, 26, 84),
+        selectedLabelStyle: const TextStyle(color: Colors.white),
+        unselectedLabelStyle: const TextStyle(color: Colors.white),
         unselectedItemColor: color1,
         selectedItemColor: color2,
         // unselectedIconTheme: IconThemeData(size: 0),
@@ -89,7 +86,6 @@ class _bottomnavState extends State<bottomnav> {
           BottomNavigationBarItem(
             icon: image1,
             label: 'Movies',
-            
           ),
           BottomNavigationBarItem(
             icon: image2,

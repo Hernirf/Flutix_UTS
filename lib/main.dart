@@ -30,29 +30,23 @@ import 'package:utsmobile/page/wallettopup.dart';
 import 'package:utsmobile/Olah_data.dart';
 import 'package:utsmobile/test.dart';
 
-void main() async{
+void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   WidgetsFlutterBinding.ensureInitialized();
-    runApp(
-
-      MultiProvider(
+  runApp(
+    MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-      create: (context) => olahData()),
-        ChangeNotifierProvider(
-      create: (context) => TmdbApi()),
-       ChangeNotifierProvider(
-      create: (context) => Bookingg()),
-      ChangeNotifierProvider(
-      create: (context) => Wallets()),
+        ChangeNotifierProvider(create: (context) => olahData()),
+        ChangeNotifierProvider(create: (context) => TmdbApi()),
+        ChangeNotifierProvider(create: (context) => Bookingg()),
+        ChangeNotifierProvider(create: (context) => Wallets()),
       ],
-       // Inisialisasi DataProvider
+      // Inisialisasi DataProvider
       child: MyApp(),
     ),
   );
-
 }
 
 class MyApp extends StatelessWidget {
@@ -61,7 +55,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -85,45 +78,49 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // home:  profile(),
-    routes:{
-      '/' :(context) => SplashScreen(),
-      '/bottomnav' :(context) => bottomnav(idx: 0,),
-      '/bottomnav1' :(context) => bottomnav(idx: 1,),
-      '/bottomnav2' :(context) => bottomnav(idx: 2,),
-      '/myticket' :(context) => myticket(),
-      '/signin' :(context) => SignInPage(),
-      '/signup' :(context) => SignUpPage(),
-      '/profile' :(context) => profile(),
-      '/checkout' :(context) => Checkout(),
-      '/checkoutf' :(context) => CheckoutF(),
-      '/confirm' :(context) => ConfirmationPage() ,
-      '/homemovies' :(context) => homeMovies(),
-      '/movedetails' :(context) => movieDetails(),
-      '/myticket' :(context) => myticket(),
-      '/mywallet' :(context) => mywallet() ,
-      '/selectdate' :(context) => selectPlaceDate(),
-      '/selectseat' :(context) => selectSeat(),
-      '/successcheckout' :(context) => SuccessCheckoutPage(),
-      '/successtopup' :(context) => successtopup(),
-      '/ticketdetails' :(context) => ticketdetails(),
-      '/userprofile' :(context) => UserProfilePage(),
-      '/wallettopuup' :(context) => wallettopup(), 
-      '/editProfile' :(context) => edit_profile(), 
+      routes: {
+        '/': (context) => SplashScreen(),
+        '/bottomnav': (context) => bottomnav(
+              idx: 0,
+            ),
+        '/bottomnav1': (context) => bottomnav(
+              idx: 1,
+            ),
+        '/bottomnav2': (context) => bottomnav(
+              idx: 2,
+            ),
+        '/myticket': (context) => myticket(),
+        '/signin': (context) => SignInPage(),
+        '/signup': (context) => SignUpPage(),
+        '/profile': (context) => profile(),
+        '/checkout': (context) => Checkout(),
+        '/checkoutf': (context) => CheckoutF(),
+        '/confirm': (context) => ConfirmationPage(),
+        '/homemovies': (context) => homeMovies(),
+        '/movedetails': (context) => movieDetails(),
+        '/myticket': (context) => myticket(),
+        '/mywallet': (context) => mywallet(),
+        '/selectdate': (context) => selectPlaceDate(),
+        '/selectseat': (context) => selectSeat(),
+        '/successcheckout': (context) => SuccessCheckoutPage(),
+        '/successtopup': (context) => successtopup(),
+        '/ticketdetails': (context) => ticketdetails(),
+        '/userprofile': (context) => UserProfilePage(),
+        '/wallettopuup': (context) => wallettopup(),
+        '/editProfile': (context) => edit_profile(),
+      },
+      initialRoute: '/',
 
-    },
-    initialRoute: '/',
-    
-    // home: StreamBuilder(
-    //   stream: FirebaseAuth.instance.authStateChanges(),
-    //   builder: (context, snapshot) {
-    //     if (snapshot.hasData){
-    //       return const homeMovies();
-    //     }
-    //     return SplashScreen();
+      // home: StreamBuilder(
+      //   stream: FirebaseAuth.instance.authStateChanges(),
+      //   builder: (context, snapshot) {
+      //     if (snapshot.hasData){
+      //       return const homeMovies();
+      //     }
+      //     return SplashScreen();
 
-    //   }
-    // ), 
+      //   }
+      // ),
     );
-  
   }
 }

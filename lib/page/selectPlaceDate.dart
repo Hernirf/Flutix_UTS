@@ -15,18 +15,18 @@ class selectPlaceDate extends StatefulWidget {
   @override
   State<selectPlaceDate> createState() => _selectPlaceDateState();
 }
-List<bool> chooseHari = [false,false,false,false];
-    List<bool> chooseCGV = [false,false,false];
-    List<bool> chooseBM = [false,false,false];
-    List<bool> chooseCS = [false,false,false];
 
+List<bool> chooseHari = [false, false, false, false];
+List<bool> chooseCGV = [false, false, false];
+List<bool> chooseBM = [false, false, false];
+List<bool> chooseCS = [false, false, false];
 
 class _selectPlaceDateState extends State<selectPlaceDate> {
   @override
   Widget build(BuildContext context) {
     double tinggi = MediaQuery.of(context).size.height;
     double lebar = MediaQuery.of(context).size.width;
-    
+
     final book = Provider.of<Bookingg>(context, listen: false);
     final data = Provider.of<olahData>(context, listen: false);
     final movie = Provider.of<TmdbApi>(context, listen: false);
@@ -91,28 +91,27 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                 ],
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,  
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   GestureDetector(
-                    
                     onTap: () {
-                        
-                        setState(() {
+                      setState(() {
                         bookMovie.tanggal = 'Saturday, 21 November 2023';
                         chooseHari[0] = true;
                         // alert msg = new alert();
                         // msg.showAlert(context, "dongo");
-                        });
+                      });
                     },
                     child: Column(
-                      
                       children: [
                         Container(
                             width: 60,
                             height: 90,
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: chooseHari[0]?Colors.blue[800]: Colors.blue,
+                              color: chooseHari[0]
+                                  ? Colors.blue[800]
+                                  : Colors.blue,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Column(
@@ -145,13 +144,12 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                   ),
                   GestureDetector(
                     onTap: () {
-                        setState(() {
-                          bookMovie.tanggal = 'Sunday, 22 November 2023';
-                          chooseHari[1] = true;
-                        });
-                        // alert msg = new alert();
-                        // msg.showAlert(context, "dongo");
-                        
+                      setState(() {
+                        bookMovie.tanggal = 'Sunday, 22 November 2023';
+                        chooseHari[1] = true;
+                      });
+                      // alert msg = new alert();
+                      // msg.showAlert(context, "dongo");
                     },
                     child: Column(
                       children: [
@@ -160,7 +158,8 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                           height: 90,
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: chooseHari[1]?Colors.blue[800]: Colors.blue,
+                            color:
+                                chooseHari[1] ? Colors.blue[800] : Colors.blue,
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Column(
@@ -194,11 +193,10 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                   ),
                   GestureDetector(
                     onTap: () {
-                        
-                        setState(() {
-                          bookMovie.tanggal = 'Monday, 23 November 2023';
-                          chooseHari[2] = true;
-                        });
+                      setState(() {
+                        bookMovie.tanggal = 'Monday, 23 November 2023';
+                        chooseHari[2] = true;
+                      });
                     },
                     child: Column(
                       children: [
@@ -207,7 +205,9 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                             height: 90,
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color:chooseHari[2]?Colors.blue[800]: Colors.blue,
+                              color: chooseHari[2]
+                                  ? Colors.blue[800]
+                                  : Colors.blue,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Column(
@@ -239,13 +239,11 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () { 
-                        
-                        setState(() {
-                          bookMovie.tanggal = 'Tuesday, 24 November 2023';
-                          chooseHari[3] = true;
-                        });
-                  
+                    onTap: () {
+                      setState(() {
+                        bookMovie.tanggal = 'Tuesday, 24 November 2023';
+                        chooseHari[3] = true;
+                      });
                     },
                     child: Column(
                       children: [
@@ -254,7 +252,9 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                             height: 90,
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: chooseHari[3]?Colors.blue[800]: Colors.blue,
+                              color: chooseHari[3]
+                                  ? Colors.blue[800]
+                                  : Colors.blue,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Column(
@@ -343,14 +343,14 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                 height: 10,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment
-                    .spaceAround, 
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   GestureDetector(
                     onTap: () {
-                        bookMovie.tempat = "CGV Samarinda Plaza Mall";
-                        bookMovie.waktu = '16.00';
-                        chooseCGV[0] = true; setState(() { });
+                      bookMovie.tempat = "CGV Samarinda Plaza Mall";
+                      bookMovie.waktu = '16.00';
+                      chooseCGV[0] = true;
+                      setState(() {});
                     },
                     child: Column(
                       children: [
@@ -359,7 +359,9 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                             height: 45,
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: chooseCGV[0]==true ? Colors.blue[800]:Colors.blue,
+                              color: chooseCGV[0] == true
+                                  ? Colors.blue[800]
+                                  : Colors.blue,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Column(
@@ -380,9 +382,10 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                   ),
                   GestureDetector(
                     onTap: () {
-                       bookMovie.tempat = "CGV Samarinda Plaza Mall";
+                      bookMovie.tempat = "CGV Samarinda Plaza Mall";
                       bookMovie.waktu = '19.00';
-                      chooseCGV[1]=true; setState(() { });
+                      chooseCGV[1] = true;
+                      setState(() {});
                     },
                     child: Column(
                       children: [
@@ -391,7 +394,9 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                           height: 45,
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: chooseCGV[1]==true ? Colors.blue[800]:Colors.blue,
+                            color: chooseCGV[1] == true
+                                ? Colors.blue[800]
+                                : Colors.blue,
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Column(
@@ -413,10 +418,10 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                   ),
                   GestureDetector(
                     onTap: () {
-                       bookMovie.tempat = "CGV Samarinda Plaza Mall";
-                        bookMovie.waktu = '22.00';
-                        chooseCGV[2] = true;
-                        setState(() { });
+                      bookMovie.tempat = "CGV Samarinda Plaza Mall";
+                      bookMovie.waktu = '22.00';
+                      chooseCGV[2] = true;
+                      setState(() {});
                     },
                     child: Column(
                       children: [
@@ -425,7 +430,9 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                             height: 45,
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: chooseCGV[2]==true ? Colors.blue[800]:Colors.blue,
+                              color: chooseCGV[2] == true
+                                  ? Colors.blue[800]
+                                  : Colors.blue,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Column(
@@ -476,15 +483,14 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                 height: 10,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment
-                    .spaceAround, 
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   GestureDetector(
                     onTap: () {
-                        bookMovie.tempat = "XXI BIGMALL Samarinda";
-                        bookMovie.waktu = '16.00';
-                        chooseBM[0] = true;
-                        setState(() { });
+                      bookMovie.tempat = "XXI BIGMALL Samarinda";
+                      bookMovie.waktu = '16.00';
+                      chooseBM[0] = true;
+                      setState(() {});
                     },
                     child: Column(
                       children: [
@@ -493,7 +499,9 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                             height: 45,
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: chooseBM[0]==true ? Colors.blue[800]:Colors.blue,
+                              color: chooseBM[0] == true
+                                  ? Colors.blue[800]
+                                  : Colors.blue,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Column(
@@ -514,10 +522,10 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                   ),
                   GestureDetector(
                     onTap: () {
-                        bookMovie.tempat = "XXI BIGMALL Samarinda";
-                        bookMovie.waktu = '19.00'; 
-                        chooseBM[1] = true;
-                        setState(() { });
+                      bookMovie.tempat = "XXI BIGMALL Samarinda";
+                      bookMovie.waktu = '19.00';
+                      chooseBM[1] = true;
+                      setState(() {});
                     },
                     child: Column(
                       children: [
@@ -526,7 +534,9 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                           height: 45,
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: chooseBM[1]==true ? Colors.blue[800]:Colors.blue,
+                            color: chooseBM[1] == true
+                                ? Colors.blue[800]
+                                : Colors.blue,
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Column(
@@ -548,10 +558,10 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                   ),
                   GestureDetector(
                     onTap: () {
-                         bookMovie.tempat = "XXI BIGMALL Samarinda";
-                        bookMovie.waktu = '22.00';
-                        chooseBM[2] = true;
-                        setState(() { });
+                      bookMovie.tempat = "XXI BIGMALL Samarinda";
+                      bookMovie.waktu = '22.00';
+                      chooseBM[2] = true;
+                      setState(() {});
                     },
                     child: Column(
                       children: [
@@ -560,7 +570,9 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                             height: 45,
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: chooseBM[2]==true ? Colors.blue[800]:Colors.blue,
+                              color: chooseBM[2] == true
+                                  ? Colors.blue[800]
+                                  : Colors.blue,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Column(
@@ -611,15 +623,14 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                 height: 10,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment
-                    .spaceAround,  
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   GestureDetector(
                     onTap: () {
-                        bookMovie.tempat = "XXI City Centrum Samarinda";
-                        bookMovie.waktu = '16.00';
-                        chooseCS[0] = true;
-                        setState(() { });
+                      bookMovie.tempat = "XXI City Centrum Samarinda";
+                      bookMovie.waktu = '16.00';
+                      chooseCS[0] = true;
+                      setState(() {});
                     },
                     child: Column(
                       children: [
@@ -628,7 +639,9 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                             height: 45,
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: chooseCS[0]==true ? Colors.blue[800]:Colors.blue,
+                              color: chooseCS[0] == true
+                                  ? Colors.blue[800]
+                                  : Colors.blue,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Column(
@@ -649,10 +662,10 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                   ),
                   GestureDetector(
                     onTap: () {
-                       bookMovie.tempat = "XXI City Centrum Samarinda";
-                        bookMovie.waktu = '19.00';
-                        chooseCS[1] = true;
-                        setState(() { });
+                      bookMovie.tempat = "XXI City Centrum Samarinda";
+                      bookMovie.waktu = '19.00';
+                      chooseCS[1] = true;
+                      setState(() {});
                     },
                     child: Column(
                       children: [
@@ -661,7 +674,9 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                           height: 45,
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: chooseCS[1]==true ? Colors.blue[800]:Colors.blue,
+                            color: chooseCS[1] == true
+                                ? Colors.blue[800]
+                                : Colors.blue,
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Column(
@@ -683,10 +698,10 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                   ),
                   GestureDetector(
                     onTap: () {
-                        bookMovie.tempat = "XXI City Centrum Samarinda";
-                        bookMovie.waktu = '22.00';
-                        chooseCS[2] = true;
-                        setState(() { });
+                      bookMovie.tempat = "XXI City Centrum Samarinda";
+                      bookMovie.waktu = '22.00';
+                      chooseCS[2] = true;
+                      setState(() {});
                     },
                     child: Column(
                       children: [
@@ -695,7 +710,9 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                             height: 45,
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: chooseCS[2]==true ? Colors.blue[800]:Colors.blue,
+                              color: chooseCS[2] == true
+                                  ? Colors.blue[800]
+                                  : Colors.blue,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Column(
@@ -727,15 +744,14 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context,'/movedetails');
+                      Navigator.pushNamed(context, '/movedetails');
                     },
                     child: Text(
                       "Continue to Select Seat",
                       style: TextStyle(
                         fontSize: 18,
                         fontFamily: 'Railway',
-                        color: Colors.deepPurple,  
-                        
+                        color: Colors.deepPurple,
                       ),
                     ),
                   ),
@@ -747,11 +763,11 @@ class _selectPlaceDateState extends State<selectPlaceDate> {
                     color: Colors.blue,
                     iconSize: 40,
                     onPressed: () {
-                      Navigator.pushNamed(context,'/selectseat');
+                      Navigator.pushNamed(context, '/selectseat');
                       // print(bookMovie.id_order);
-      
+
                       setState(() {});
-                    }, 
+                    },
                   ),
                 ],
               )

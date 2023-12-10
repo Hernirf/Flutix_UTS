@@ -20,34 +20,33 @@ class _mywalletState extends State<mywallet> {
   Widget build(BuildContext context) {
     final data = Provider.of<olahData>(context, listen: false);
     final walletProvider = Provider.of<Wallets>(context, listen: false);
-    
 
     String id = data.idlogin;
     return Scaffold(
       appBar: AppBar(
-        
-        leading: InkWell(onTap: (){
-          Navigator.pushNamed(context, '/bottomnav2');
-          
-        },child: Image.asset("asset/back.png"),),
+        leading: InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, '/bottomnav2');
+          },
+          child: Image.asset("asset/back.png"),
+        ),
         titleSpacing: 50,
-        title: Text("My Wallet",style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            
-        backgroundColor: Color.fromARGB(255, 149, 0, 194),
+        title: const Text(
+          "My Wallet",
+          style: TextStyle(
+              color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: const Color.fromARGB(255, 149, 0, 194),
       ),
       body: ListView(
         children: [
           Container(
             child: Padding(
-              padding: EdgeInsets.symmetric(),
+              padding: const EdgeInsets.symmetric(),
               child: Container(
                 width: 360,
                 // height: ,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -60,42 +59,40 @@ class _mywalletState extends State<mywallet> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 20, horizontal: 0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 20, horizontal: 0),
                       child: Container(
                         width: 300,
                         height: 170,
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 102, 80, 202),
+                            color: const Color.fromARGB(255, 102, 80, 202),
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
-                                color: Color.fromARGB(255, 126, 233, 255),
+                                color: const Color.fromARGB(255, 126, 233, 255),
                                 width: 2)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 50, top: 30),
+                              padding: const EdgeInsets.only(left: 50, top: 30),
                               child: Image.asset("asset/walleticon.png"),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 10, left: 50),
+                              padding: const EdgeInsets.only(top: 10, left: 50),
                               child: StreamBuilder<DocumentSnapshot>(
-                                 stream: data.users.doc(id).snapshots(),
+                                  stream: data.users.doc(id).snapshots(),
                                   builder: (_, snapshot) {
-                                  return Text(
-                                    'IDR ${snapshot.data!.get("saldo").toString()}',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  );
-                                }
-                              ),
+                                    return Text(
+                                      'IDR ${snapshot.data!.get("saldo").toString()}',
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                    );
+                                  }),
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.only(left: 50),
                               child: Text(
                                 "Available Balance",
@@ -108,96 +105,100 @@ class _mywalletState extends State<mywallet> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 20),
+                      padding: const EdgeInsets.only(left: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Recent Transactions",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           StreamBuilder<QuerySnapshot>(
-                            stream: walletProvider.wallett.where('id_user', isEqualTo: data.idlogin).snapshots(),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState == ConnectionState.waiting) {
-                                return CircularProgressIndicator();
-                            } else if (snapshot.hasError) {
-                              return Text('Error: ${snapshot.error}');
-                            } else {
-                            
-                            final List<Wallet> walletList = snapshot.data!.docs.map((DocumentSnapshot document) {
-                            print(document.data()); // Tambahkan pernyataan print ini
-                            return Wallet(
-                              id_user: document['id_user'] as String,
-                              tanggal: document['tanggal'] as String,
-                              id_book: document['id_book'] as String,
-                              jumlah: document['jumlah'] as int,
-                              keterangan: document['keterangan'] as String,
-                              pukul: document['pukul'] as String,
-                              // Atur atribut lainnya sesuai kebutuhan
-                            );
-                          }).toList();
-                          print(walletList.length.toString()); // Tambahkan pernyataan print ini
+                              stream: walletProvider.wallett
+                                  .where('id_user', isEqualTo: data.idlogin)
+                                  .snapshots(),
+                              builder: (context, snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return const CircularProgressIndicator();
+                                } else if (snapshot.hasError) {
+                                  return Text('Error: ${snapshot.error}');
+                                } else {
+                                  final List<Wallet> walletList = snapshot
+                                      .data!.docs
+                                      .map((DocumentSnapshot document) {
+                                    print(document
+                                        .data()); // Tambahkan pernyataan print ini
+                                    return Wallet(
+                                      id_user: document['id_user'] as String,
+                                      tanggal: document['tanggal'] as String,
+                                      id_book: document['id_book'] as String,
+                                      jumlah: document['jumlah'] as int,
+                                      keterangan:
+                                          document['keterangan'] as String,
+                                      pukul: document['pukul'] as String,
+                                      // Atur atribut lainnya sesuai kebutuhan
+                                    );
+                                  }).toList();
+                                  print(walletList.length
+                                      .toString()); // Tambahkan pernyataan print ini
 
-                            
-                              return Container(
-                                height: 400,
-                    
-                          // child: Expanded(
-                          child: ListView.builder(
-                              
-                              itemCount: walletList.length,
-                              itemBuilder: (context, index) {
-                                SizedBox(height: 10,);
-                                return walletsTile(wallet: walletList[index]);
-                          }),
-                    // ),
-                );
-                              
-                            }
-                            }
-                          ),
+                                  return Container(
+                                    height: 400,
+
+                                    // child: Expanded(
+                                    child: ListView.builder(
+                                        itemCount: walletList.length,
+                                        itemBuilder: (context, index) {
+                                          const SizedBox(
+                                            height: 10,
+                                          );
+                                          return walletsTile(
+                                              wallet: walletList[index]);
+                                        }),
+                                    // ),
+                                  );
+                                }
+                              }),
                         ],
                       ),
                     ),
-                    Padding(padding: EdgeInsets.symmetric(vertical: 20)),
+                    const Padding(padding: EdgeInsets.symmetric(vertical: 20)),
                     ElevatedButton(
-                    onPressed: ()  {
-                      Navigator.pushNamed(context, '/wallettopuup');
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF7015A8),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 90, vertical: 10),
-                        elevation: 10),
-                    child: Text(
-                      "Top Up Wallet",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'Railway',
-                        color: Colors.white,
-                        shadows: [
-                          Shadow(
-                            color: Colors.black,
-                            offset: Offset(1, 1),
-                            blurRadius: 5,
-                          ),
-                        ],
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/wallettopuup');
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF7015A8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 90, vertical: 10),
+                          elevation: 10),
+                      child: const Text(
+                        "Top Up Wallet",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontFamily: 'Railway',
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black,
+                              offset: Offset(1, 1),
+                              blurRadius: 5,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
                   ],
                 ),
               ),
             ),
-
-
           ),
         ],
       ),

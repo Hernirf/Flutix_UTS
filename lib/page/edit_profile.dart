@@ -8,28 +8,26 @@ import 'package:utsmobile/page/user_profile.dart';
 import 'dart:html' as html;
 import 'dart:typed_data';
 
-
 class edit_profile extends StatefulWidget {
   @override
   _edit_profileState createState() => _edit_profileState();
 }
 
 class _edit_profileState extends State<edit_profile> {
-   TextEditingController _username = TextEditingController();
-   TextEditingController _email = TextEditingController();
-   TextEditingController _pass = TextEditingController();
-   TextEditingController _conpass = TextEditingController();
-    Uint8List? _image;
-    String namaFile ='';
+  TextEditingController _username = TextEditingController();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _pass = TextEditingController();
+  TextEditingController _conpass = TextEditingController();
+  Uint8List? _image;
+  String namaFile = '';
 
-
-   @override
+  @override
   void initState() {
     super.initState();
     // Lakukan inisialisasi atau langganan sumber daya di sini
   }
 
-   Future<List<String>> fetchData() async {
+  Future<List<String>> fetchData() async {
     final data = Provider.of<olahData>(context, listen: false);
     print(data.idlogin);
     print(await data.getFieldById("fullname", data.idlogin));
@@ -43,13 +41,12 @@ class _edit_profileState extends State<edit_profile> {
   @override
   void dispose() {
     // Lakukan tindakan bersih di sini
-    _email.dispose(); 
+    _email.dispose();
     _pass.dispose();
-    super.dispose(); 
+    super.dispose();
   }
 
-   Future<void> _uploadImage() async {
-    
+  Future<void> _uploadImage() async {
     // final html.InputElement input = html.FileUploadInputElement()..accept = 'image/*';
     final html.FileUploadInputElement input = html.FileUploadInputElement();
     input.accept = 'user/*';
@@ -65,26 +62,22 @@ class _edit_profileState extends State<edit_profile> {
           final Uint8List data = reader.result as Uint8List;
           _image = data;
           namaFile = file.name;
-    
         });
       }
     });
   }
- 
-
 
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<olahData>(context, listen: false);
     fetchData().then((result) {
-        _username.text = result.first;
-        _pass.text =result.last;
+      _username.text = result.first;
+      _pass.text = result.last;
     });
     data.setDataIndex(2);
     FirebaseFirestore db = FirebaseFirestore.instance;
     CollectionReference users = db.collection("users");
-  
-    
+
     //  DocumentReference doc = doc.id;
 
     return Scaffold(
@@ -93,14 +86,13 @@ class _edit_profileState extends State<edit_profile> {
           onTap: () async {
             await data.signOut();
             Navigator.pushNamed(context, "/bottomnav");
-
           },
           child: Image.asset("asset/back.png"),
         ),
-        backgroundColor: Color.fromARGB(255, 149, 0, 194),
+        backgroundColor: const Color.fromARGB(255, 149, 0, 194),
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -118,8 +110,8 @@ class _edit_profileState extends State<edit_profile> {
                 onTap: () {
                   _uploadImage();
                 },
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 30),
+                child: const Padding(
+                  padding: EdgeInsets.only(top: 30),
                   child: CircleAvatar(
                     radius: 50,
                     backgroundColor: Color.fromARGB(255, 102, 80, 202),
@@ -132,8 +124,8 @@ class _edit_profileState extends State<edit_profile> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              Column(
+              const SizedBox(height: 20),
+              const Column(
                 children: [
                   Text(
                     'Edit Profile',
@@ -145,19 +137,19 @@ class _edit_profileState extends State<edit_profile> {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Full Name',
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                     TextFormField(
                       controller: _username,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Type Here',
                         hintStyle:
                             TextStyle(color: Color.fromARGB(255, 92, 195, 232)),
@@ -170,15 +162,14 @@ class _edit_profileState extends State<edit_profile> {
                         fillColor: Color.fromARGB(255, 102, 80, 202),
                       ),
                     ),
-                   
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Password',
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                     TextFormField(
                       controller: _pass,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Type Here',
                         hintStyle:
                             TextStyle(color: Color.fromARGB(255, 92, 195, 232)),
@@ -187,14 +178,14 @@ class _edit_profileState extends State<edit_profile> {
                         fillColor: Color.fromARGB(255, 102, 80, 202),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
+                    const SizedBox(height: 10),
+                    const Text(
                       'Confirm Password',
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                     TextFormField(
                       controller: _conpass,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Type Here',
                         hintStyle:
                             TextStyle(color: Color.fromARGB(255, 92, 195, 232)),
@@ -206,60 +197,64 @@ class _edit_profileState extends State<edit_profile> {
                   ],
                 ),
               ),
-              SizedBox(height: 50),
-               ElevatedButton(
-                    onPressed: () async {
-                      if(_pass.text == _conpass.text){
-                        print("object");
-                      if (data.userAuth != null){
-                        print("object2");
+              const SizedBox(height: 50),
+              ElevatedButton(
+                onPressed: () async {
+                  if (_pass.text == _conpass.text) {
+                    print("object");
+                    if (data.userAuth != null) {
+                      print("object2");
 
-                          if(_image!=null){
-                          final ref =  FirebaseStorage.instance.ref().child('user/$namaFile');
-                            await ref.putData(_image!);
-                            String downloadUrl = await FirebaseStorage.instance.ref().child('user/$namaFile').getDownloadURL();
-                            print(downloadUrl);
-                            await users.doc(data.idlogin).update({'fullname': _username.text, 'pass': _pass.text, 'urlPoto':downloadUrl});
-                      
-                          }
-                          else{ 
+                      if (_image != null) {
+                        final ref = FirebaseStorage.instance
+                            .ref()
+                            .child('user/$namaFile');
+                        await ref.putData(_image!);
+                        String downloadUrl = await FirebaseStorage.instance
+                            .ref()
+                            .child('user/$namaFile')
+                            .getDownloadURL();
+                        print(downloadUrl);
+                        await users.doc(data.idlogin).update({
+                          'fullname': _username.text,
+                          'pass': _pass.text,
+                          'urlPoto': downloadUrl
+                        });
+                      } else {
                         print("object3");
 
-                            await users.doc(data.idlogin).update({'fullname': _username.text, 'pass': _pass.text});
+                        await users.doc(data.idlogin).update(
+                            {'fullname': _username.text, 'pass': _pass.text});
                         print("object4");
+                      }
+                      Navigator.pushNamed(context, '/bottomnav2');
 
-                          }
-                          Navigator.pushNamed(context, '/bottomnav2');
-
-                      // Navigator.push(context, 
+                      // Navigator.push(context,
                       // MaterialPageRoute(builder: (context) => const bottomnav(2)));
-                    
                     }
-                      
                   }
-                        },
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF7015A8),
-                            padding:
-                                EdgeInsets.symmetric(horizontal: 90, vertical: 10),
-                            elevation: 10),
-                        child: Text(
-                          "Update Now",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: 'Railway',
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black,
-                                offset: Offset(1, 1),
-                                blurRadius: 5,
-                              ),
-                            ],
-                          ),
-                        ),
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF7015A8),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 90, vertical: 10),
+                    elevation: 10),
+                child: const Text(
+                  "Update Now",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Railway',
+                    color: Colors.white,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        offset: Offset(1, 1),
+                        blurRadius: 5,
                       ),
-             
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),

@@ -6,8 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../Olah_data.dart';
 
-
-
 class ConfirmationPage extends StatelessWidget {
   // final String fullName;
 
@@ -15,16 +13,15 @@ class ConfirmationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  final data = Provider.of<olahData>(context, listen: false);
-  var id = data.idsignup;
-  // data.filedFromDatabase(id,'fullname');
+    final data = Provider.of<olahData>(context, listen: false);
+    var id = data.idsignup;
+    // data.filedFromDatabase(id,'fullname');
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 149, 0, 194),
-        automaticallyImplyLeading: false,
-
-      ),
-      body:Container(
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 149, 0, 194),
+          automaticallyImplyLeading: false,
+        ),
+        body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -57,12 +54,12 @@ class ConfirmationPage extends StatelessWidget {
                         },
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
-                          backgroundImage: NetworkImage(snapshot.data!.get("urlPoto")),
+                          backgroundImage:
+                              NetworkImage(snapshot.data!.get("urlPoto")),
                           radius: 60,
                         ),
                       );
-                    }
-                  ),
+                    }),
                 SizedBox(height: 50), // Menurunkan tombol ke bawah
                 Text(
                   'Welcome,',
@@ -72,17 +69,16 @@ class ConfirmationPage extends StatelessWidget {
                   ),
                 ),
                 StreamBuilder<DocumentSnapshot>(
-                  stream: data.users.doc(id).snapshots(),
-                  builder: (_, snapshot) {
-                    return Text(
-                     snapshot.data!.get("fullname"),
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    );
-                  }
-                ),
+                    stream: data.users.doc(id).snapshots(),
+                    builder: (_, snapshot) {
+                      return Text(
+                        snapshot.data!.get("fullname"),
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      );
+                    }),
                 SizedBox(height: 100), // Menurunkan tombol ke bawah
                 TextButton(
                   onPressed: () async {
@@ -95,25 +91,25 @@ class ConfirmationPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(width: 140,),
+                      SizedBox(
+                        width: 140,
+                      ),
                       Text(
                         'Yes, I\'m In',
                         style:
                             TextStyle(color: Color.fromARGB(255, 163, 64, 166)),
                       ),
-                       SizedBox(width: 55,),
-      
-                       Icon(Icons.arrow_circle_right,
+                      SizedBox(
+                        width: 55,
+                      ),
+                      Icon(Icons.arrow_circle_right,
                           size: 60, color: Color.fromARGB(255, 248, 128, 252)),
-                     
                     ],
                   ),
                 ),
               ],
             ),
           ),
-        )
-        
-    );
+        ));
   }
 }

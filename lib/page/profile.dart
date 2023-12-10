@@ -21,10 +21,10 @@ class _profileState extends State<profile> {
     final String id = data.idlogin;
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.only(top: 20),
         width: lebar,
         // height: 660,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -37,76 +37,71 @@ class _profileState extends State<profile> {
         child: Column(
           children: [
             StreamBuilder<DocumentSnapshot>(
-              stream: data.users.doc(id).snapshots(),
-              builder: (_, snapshot) {
-                return InkWell(
-                  onTap: () {
-                    print(snapshot.data!.get("urlPoto"));
-                    // print('tes');
-                  },
-                  child: CircleAvatar(
-                    backgroundImage:
-                        NetworkImage(snapshot.data!.get("urlPoto")),
-                    radius: 50,
-                  ),
-                );
-              }
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: StreamBuilder<DocumentSnapshot>(
-               stream: data.users.doc(id).snapshots(),
-                builder: (_, snapshot) {
-                  return Text(
-                    snapshot.data!.get("fullname"),
-                    style: TextStyle(color: Colors.white),
-                  );
-                }
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 20),
-              child: StreamBuilder<DocumentSnapshot>(
                 stream: data.users.doc(id).snapshots(),
                 builder: (_, snapshot) {
-                  return Text(snapshot.data!.get("email"),
-                      style: TextStyle(color: Colors.white));
-                }
-              ),
+                  return InkWell(
+                    onTap: () {
+                      print(snapshot.data!.get("urlPoto"));
+                      // print('tes');
+                    },
+                    child: CircleAvatar(
+                      backgroundImage:
+                          NetworkImage(snapshot.data!.get("urlPoto")),
+                      radius: 50,
+                    ),
+                  );
+                }),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: StreamBuilder<DocumentSnapshot>(
+                  stream: data.users.doc(id).snapshots(),
+                  builder: (_, snapshot) {
+                    return Text(
+                      snapshot.data!.get("fullname"),
+                      style: const TextStyle(color: Colors.white),
+                    );
+                  }),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: StreamBuilder<DocumentSnapshot>(
+                  stream: data.users.doc(id).snapshots(),
+                  builder: (_, snapshot) {
+                    return Text(snapshot.data!.get("email"),
+                        style: const TextStyle(color: Colors.white));
+                  }),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(padding: EdgeInsets.only(left: 50)),
+                const Padding(padding: EdgeInsets.only(left: 50)),
                 Image.asset("asset/edit.png"),
                 Padding(
-                  padding: EdgeInsets.only(left: 30),
-                  
+                  padding: const EdgeInsets.only(left: 30),
                   child: InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/editProfile');
-                  },
-                  child: Text(
-                    "Edit Profile",
-                    style: TextStyle(color: Colors.white,fontSize: 20),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/editProfile');
+                    },
+                    child: const Text(
+                      "Edit Profile",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
                   ),
-                ),
                 )
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(padding: EdgeInsets.only(left: 50)),
+                const Padding(padding: EdgeInsets.only(left: 50)),
                 Image.asset("asset/Wallet.png"),
                 Padding(
-                  padding: EdgeInsets.only(left: 30),
-                  
+                  padding: const EdgeInsets.only(left: 30),
                   child: InkWell(
-                     onTap: () {
-                    Navigator.pushNamed(context, '/mywallet');
-                  },
-                    child: Text("My Wallet",
+                    onTap: () {
+                      Navigator.pushNamed(context, '/mywallet');
+                    },
+                    child: const Text("My Wallet",
                         style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                 )
@@ -115,9 +110,9 @@ class _profileState extends State<profile> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(padding: EdgeInsets.only(left: 50)),
+                const Padding(padding: EdgeInsets.only(left: 50)),
                 Image.asset("asset/bahasa.png"),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 30),
                   child: Text("Bahasa",
                       style: TextStyle(color: Colors.white, fontSize: 20)),
@@ -127,9 +122,9 @@ class _profileState extends State<profile> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(padding: EdgeInsets.only(left: 50)),
+                const Padding(padding: EdgeInsets.only(left: 50)),
                 Image.asset("asset/Star.png"),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 30),
                   child: Text("Help Center",
                       style: TextStyle(color: Colors.white, fontSize: 20)),
@@ -139,9 +134,9 @@ class _profileState extends State<profile> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(padding: EdgeInsets.only(left: 50)),
+                const Padding(padding: EdgeInsets.only(left: 50)),
                 Image.asset("asset/rate.png"),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 30),
                   child: Text("Edit Profile",
                       style: TextStyle(color: Colors.white, fontSize: 20)),

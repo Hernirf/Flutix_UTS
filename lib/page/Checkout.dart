@@ -31,17 +31,15 @@ class _CheckoutState extends State<Checkout> {
     final data = Provider.of<olahData>(context, listen: false);
     String id = data.idlogin;
     final Movie movie = tmdbApi.myMovie;
-     FirebaseFirestore db = FirebaseFirestore.instance;
+    FirebaseFirestore db = FirebaseFirestore.instance;
     CollectionReference users = db.collection("users");
     selectSeat resetkursi = new selectSeat();
-
 
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
           onTap: () {
-          Navigator.pushNamed(context, '/selectseat');
-
+            Navigator.pushNamed(context, '/selectseat');
           },
           child: Image.asset("asset/back.png"),
         ),
@@ -128,14 +126,15 @@ class _CheckoutState extends State<Checkout> {
                         bottomRight: Radius.circular(10),
                       ),
                     ),
-                    child: Image.network(book.myBooking.posterUrl, fit: BoxFit.cover),
+                    child: Image.network(book.myBooking.posterUrl,
+                        fit: BoxFit.cover),
                   ),
-                  SizedBox(width: 20), 
+                  SizedBox(width: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                       book.myBooking.judul_film,
+                        book.myBooking.judul_film,
                         style: TextStyle(
                           fontSize: 20,
                           fontFamily: 'Railway',
@@ -262,7 +261,7 @@ class _CheckoutState extends State<Checkout> {
                       width: 25,
                     ),
                     Text(
-                     '${ book.myBooking.tanggal}, ${book.myBooking.waktu}',
+                      '${book.myBooking.tanggal}, ${book.myBooking.waktu}',
                       style: TextStyle(
                         fontSize: 12,
                         fontFamily: 'Railway',
@@ -386,7 +385,7 @@ class _CheckoutState extends State<Checkout> {
                       width: 65,
                     ),
                     Text(
-                      "Rp.${30000*book.bangku.length + 4000*book.bangku.length}",
+                      "Rp.${30000 * book.bangku.length + 4000 * book.bangku.length}",
                       style: TextStyle(
                         fontSize: 12,
                         fontFamily: 'Railway',
@@ -435,19 +434,18 @@ class _CheckoutState extends State<Checkout> {
                   width: 50,
                 ),
                 StreamBuilder<DocumentSnapshot>(
-                   stream: data.users.doc(id).snapshots(),
+                    stream: data.users.doc(id).snapshots(),
                     builder: (_, snapshot) {
-                    return Text(
-                      'Rp.${snapshot.data!.get("saldo").toString()}',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontFamily: 'Railway',
-                        color: Color.fromARGB(255, 186, 165, 246),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    );
-                  }
-                ),
+                      return Text(
+                        'Rp.${snapshot.data!.get("saldo").toString()}',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Railway',
+                          color: Color.fromARGB(255, 186, 165, 246),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    }),
               ],
             ),
 
@@ -462,36 +460,48 @@ class _CheckoutState extends State<Checkout> {
                 ),
                 InkWell(
                   onTap: () async {
-                    dynamic saldo_awal = await data.getFieldById("saldo", data.idlogin);
-                    await users.doc(data.idlogin).update({'saldo': saldo_awal-book.myBooking.total_tiket});
-                    book.tambahDataBookKeFirestore(id, book.myBooking.judul_film, book.myBooking.tanggal, book.myBooking.tempat, book.myBooking.kursi, book.myBooking.waktu, book.myBooking.id_order, book.myBooking.posterUrl, book.myBooking.harga_tiket, book.myBooking.total_tiket, book.myBooking.fee, book.myBooking.jumlah_tiket);
+                    dynamic saldo_awal =
+                        await data.getFieldById("saldo", data.idlogin);
+                    await users.doc(data.idlogin).update(
+                        {'saldo': saldo_awal - book.myBooking.total_tiket});
+                    book.tambahDataBookKeFirestore(
+                        id,
+                        book.myBooking.judul_film,
+                        book.myBooking.tanggal,
+                        book.myBooking.tempat,
+                        book.myBooking.kursi,
+                        book.myBooking.waktu,
+                        book.myBooking.id_order,
+                        book.myBooking.posterUrl,
+                        book.myBooking.harga_tiket,
+                        book.myBooking.total_tiket,
+                        book.myBooking.fee,
+                        book.myBooking.jumlah_tiket);
                     setState(() {
-                        book.bangku = const [];
-                    // print( book.bangku + "ddd");
-                    book.myBooking.fee =0;
-                    book.myBooking.harga_tiket =0;
-                    book.myBooking.id_login ='';
-                    book.myBooking.id_order ='';
-                    book.myBooking.judul_film ='';
-                    book.myBooking.jumlah_tiket =0;
-                    book.myBooking.kursi ='';
-                    book.myBooking.posterUrl ='';
-                    book.myBooking.tanggal ='';
-                    book.myBooking.tempat ='';
-                    book.myBooking.total_tiket =0;
-                    book.myBooking.waktu ='';
+                      book.bangku = const [];
+                      // print( book.bangku + "ddd");
+                      book.myBooking.fee = 0;
+                      book.myBooking.harga_tiket = 0;
+                      book.myBooking.id_login = '';
+                      book.myBooking.id_order = '';
+                      book.myBooking.judul_film = '';
+                      book.myBooking.jumlah_tiket = 0;
+                      book.myBooking.kursi = '';
+                      book.myBooking.posterUrl = '';
+                      book.myBooking.tanggal = '';
+                      book.myBooking.tempat = '';
+                      book.myBooking.total_tiket = 0;
+                      book.myBooking.waktu = '';
                     });
-                    
+
                     Navigator.pushNamed(context, '/successcheckout');
-                    
                   },
                   child: Text(
                     "Checkout Now",
                     style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'Railway',
-                      color: Colors.deepPurple,  
-                     
+                      color: Colors.deepPurple,
                     ),
                   ),
                 ),
@@ -503,38 +513,50 @@ class _CheckoutState extends State<Checkout> {
                   color: Colors.blue,
                   iconSize: 40,
                   onPressed: () async {
-                    dynamic saldo_awal = await data.getFieldById("saldo", data.idlogin);
-                    await users.doc(data.idlogin).update({'saldo': saldo_awal-book.myBooking.total_tiket});
-                    book.tambahDataBookKeFirestore(id, book.myBooking.judul_film, book.myBooking.tanggal, book.myBooking.tempat, book.myBooking.kursi, book.myBooking.waktu, book.myBooking.id_order, book.myBooking.posterUrl, book.myBooking.harga_tiket, book.myBooking.total_tiket, book.myBooking.fee, book.myBooking.jumlah_tiket);
+                    dynamic saldo_awal =
+                        await data.getFieldById("saldo", data.idlogin);
+                    await users.doc(data.idlogin).update(
+                        {'saldo': saldo_awal - book.myBooking.total_tiket});
+                    book.tambahDataBookKeFirestore(
+                        id,
+                        book.myBooking.judul_film,
+                        book.myBooking.tanggal,
+                        book.myBooking.tempat,
+                        book.myBooking.kursi,
+                        book.myBooking.waktu,
+                        book.myBooking.id_order,
+                        book.myBooking.posterUrl,
+                        book.myBooking.harga_tiket,
+                        book.myBooking.total_tiket,
+                        book.myBooking.fee,
+                        book.myBooking.jumlah_tiket);
                     book.bangku = [];
-                    book.myBooking.fee =0;
-                    book.myBooking.harga_tiket =0;
-                    book.myBooking.id_login ='';
-                    book.myBooking.id_order ='';
-                    book.myBooking.judul_film ='';
-                    book.myBooking.jumlah_tiket =0;
-                    book.myBooking.kursi ='';
-                    book.myBooking.posterUrl ='';
-                    book.myBooking.tanggal ='';
-                    book.myBooking.tempat ='';
-                    book.myBooking.total_tiket =0;
-                    
-                    for (int i=0;i<3;i++){
-                      chooseBM[i]=false;
-                      chooseCGV[i]=false;
-                      chooseCS[i]=false;
+                    book.myBooking.fee = 0;
+                    book.myBooking.harga_tiket = 0;
+                    book.myBooking.id_login = '';
+                    book.myBooking.id_order = '';
+                    book.myBooking.judul_film = '';
+                    book.myBooking.jumlah_tiket = 0;
+                    book.myBooking.kursi = '';
+                    book.myBooking.posterUrl = '';
+                    book.myBooking.tanggal = '';
+                    book.myBooking.tempat = '';
+                    book.myBooking.total_tiket = 0;
+
+                    for (int i = 0; i < 3; i++) {
+                      chooseBM[i] = false;
+                      chooseCGV[i] = false;
+                      chooseCS[i] = false;
                     }
-                    for (int i=0;i<4;i++){
+                    for (int i = 0; i < 4; i++) {
                       chooseHari[i] = false;
                     }
                     // for(int i =0;i<7;i++){
-                      
+
                     // }
-                    
+
                     Navigator.pushNamed(context, '/successcheckout');
-                    
-                  
-                  },  
+                  },
                 ),
               ],
             ),

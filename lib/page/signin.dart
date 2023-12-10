@@ -4,11 +4,8 @@ import 'package:utsmobile/komponen/alert.dart';
 
 import '../Olah_data.dart';
 
-
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
-
-
 
   @override
   _SignInPageState createState() => _SignInPageState();
@@ -17,7 +14,6 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _pass = TextEditingController();
-
 
   @override
   void initState() {
@@ -28,9 +24,9 @@ class _SignInPageState extends State<SignInPage> {
   @override
   void dispose() {
     // Lakukan tindakan bersih di sini
-    _email.dispose(); 
+    _email.dispose();
     _pass.dispose();
-    super.dispose(); 
+    super.dispose();
   }
 
   @override
@@ -38,9 +34,8 @@ class _SignInPageState extends State<SignInPage> {
     final data = Provider.of<olahData>(context, listen: false);
 
     return Scaffold(
-      
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -56,8 +51,8 @@ class _SignInPageState extends State<SignInPage> {
             children: [
               Container(
                 alignment: Alignment.centerLeft,
-                margin: EdgeInsets.only(left: 20),
-                child: Column(
+                margin: const EdgeInsets.only(left: 20),
+                child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -79,19 +74,19 @@ class _SignInPageState extends State<SignInPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Email Address',
+                    const Text('Email Address',
                         style: TextStyle(
                             fontSize: 16,
                             color: Colors.white)), // Atur warna teks
                     TextFormField(
                       controller: _email,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Type Here',
                         hintStyle:
                             TextStyle(color: Color.fromARGB(255, 92, 195, 232)),
@@ -100,14 +95,14 @@ class _SignInPageState extends State<SignInPage> {
                         fillColor: Color.fromARGB(255, 102, 80, 202),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text('Password',
+                    const SizedBox(height: 10),
+                    const Text('Password',
                         style: TextStyle(
                             fontSize: 16,
                             color: Colors.white)), // Atur warna teks
                     TextFormField(
                       controller: _pass,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Type Here',
                         hintStyle:
                             TextStyle(color: Color.fromARGB(255, 92, 195, 232)),
@@ -119,35 +114,34 @@ class _SignInPageState extends State<SignInPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton(
                     onPressed: () async {
-                       setState(() {
+                      setState(() {
                         // dispose();
                       });
-                      
-                      if (_email.value.text == "" || _pass.value.text == ""){
+
+                      if (_email.value.text == "" || _pass.value.text == "") {
                         alert msg = new alert();
                         msg.showAlert(context, "seluruh textfield harus diisi");
+                      } else {
+                        await data.login(_email.value.text, _pass.value.text);
+                        print(data.userAuth!.email);
+                        if (data.userAuth != null) {
+                          if (data.userAuth!.email == _email.text) {
+                            await data.findDocumentIDByFieldValue();
+                            print(data.idlogin);
+                            Navigator.pushNamed(context, "/bottomnav");
+                            _email.dispose();
+                            _pass.dispose();
+                          }
+                        }
                       }
-                      else{
-                      await data.login(_email.value.text, _pass.value.text);
-                      print(data.userAuth!.email);
-                          if (data.userAuth != null){
-
-                            if(data.userAuth!.email == _email.text){
-                             await data.findDocumentIDByFieldValue();
-                              print(data.idlogin);
-                                Navigator.pushNamed(context, "/bottomnav");
-                                _email.dispose();
-                                _pass.dispose();
-                            }  
-                          }}
                     },
-                    child: Row(
+                    child: const Row(
                       children: [
                         Text('Continue To Sign Up',
                             style: TextStyle(
@@ -162,7 +156,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -172,7 +166,7 @@ class _SignInPageState extends State<SignInPage> {
 
                       // Navigasi ke halaman pendaftaran baru.
                     },
-                    child: Text('Create New Account',
+                    child: const Text('Create New Account',
                         style: TextStyle(
                             color: Color.fromARGB(
                                 255, 126, 233, 255))), // Atur warna teks

@@ -9,11 +9,11 @@ class SplashScreen extends StatelessWidget {
     final data = Provider.of<olahData>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 149, 0, 194),
+        backgroundColor: const Color.fromARGB(255, 149, 0, 194),
         automaticallyImplyLeading: false,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -33,16 +33,16 @@ class SplashScreen extends StatelessWidget {
                   "asset/logo.png",
                 ),
               ),
-              SizedBox(height: 50),
-              Text(
+              const SizedBox(height: 50),
+              const Text(
                 'New Experience',
                 style: TextStyle(
                   fontSize: 24,
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 10),
-              Text(
+              const SizedBox(height: 10),
+              const Text(
                 'Watching with new movie much easier than before',
                 style: TextStyle(
                   fontSize: 16,
@@ -50,7 +50,7 @@ class SplashScreen extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 70),
+              const SizedBox(height: 70),
               ElevatedButton(
                 onPressed: () {
                   data.signOut();
@@ -60,13 +60,17 @@ class SplashScreen extends StatelessWidget {
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                    Color.fromARGB(
+                    const Color.fromARGB(
                         255, 102, 80, 202), // Ubah warna ElevatedButton
                   ),
                 ),
-                child: Text('Get Started',style: TextStyle(color: Colors.white,fontWeight: FontWeight.w300),),
+                child: const Text(
+                  'Get Started',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w300),
+                ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               TextButton(
                 onPressed: () {
                   data.signOut();
@@ -74,7 +78,7 @@ class SplashScreen extends StatelessWidget {
 
                   // Navigasi ke halaman login.
                 },
-                child: Text(
+                child: const Text(
                   'Sign In To My Account',
                   style: TextStyle(
                     color: Colors.blue,

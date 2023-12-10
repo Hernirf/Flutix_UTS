@@ -66,8 +66,7 @@ class _SuccessCheckoutPageState extends State<SuccessCheckoutPage> {
                     ElevatedButton(
                         onPressed: () {
                           // Navigator.pushNamed(context, '/myticket');
-                        Navigator.pushNamed(context, '/bottomnav1');
-
+                          Navigator.pushNamed(context, '/bottomnav1');
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xFF7015A8),
@@ -101,9 +100,8 @@ class _SuccessCheckoutPageState extends State<SuccessCheckoutPage> {
                         style: TextStyle(
                           fontSize: 16,
                           fontFamily: 'Railway',
-                          color: Colors.white,  
-                          decoration:
-                              TextDecoration.underline,  
+                          color: Colors.white,
+                          decoration: TextDecoration.underline,
                         ),
                       ),
                     )

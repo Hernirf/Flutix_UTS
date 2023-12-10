@@ -30,8 +30,7 @@ class _CheckoutFState extends State<CheckoutF> {
       appBar: AppBar(
         leading: InkWell(
           onTap: () {
-          Navigator.pushNamed(context, '/selectseat');
-
+            Navigator.pushNamed(context, '/selectseat');
           },
           child: Image.asset("asset/back.png"),
         ),
@@ -116,14 +115,15 @@ class _CheckoutFState extends State<CheckoutF> {
                       bottomRight: Radius.circular(10),
                     ),
                   ),
-                  child: Image.network(book.myBooking.posterUrl, fit: BoxFit.cover),
+                  child: Image.network(book.myBooking.posterUrl,
+                      fit: BoxFit.cover),
                 ),
-                SizedBox(width: 20), 
+                SizedBox(width: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                     book.myBooking.judul_film,
+                      book.myBooking.judul_film,
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: 'Railway',
@@ -249,7 +249,7 @@ class _CheckoutFState extends State<CheckoutF> {
                       width: 25,
                     ),
                     Text(
-                     '${ book.myBooking.tanggal}, ${book.myBooking.waktu}',
+                      '${book.myBooking.tanggal}, ${book.myBooking.waktu}',
                       style: TextStyle(
                         fontSize: 12,
                         fontFamily: 'Railway',
@@ -280,7 +280,7 @@ class _CheckoutFState extends State<CheckoutF> {
                       width: 70,
                     ),
                     Text(
-                       book.myBooking.kursi,
+                      book.myBooking.kursi,
                       style: TextStyle(
                         fontSize: 12,
                         fontFamily: 'Railway',
@@ -373,7 +373,7 @@ class _CheckoutFState extends State<CheckoutF> {
                       width: 65,
                     ),
                     Text(
-                      "Rp.${30000*book.bangku.length + 4000*book.bangku.length}",
+                      "Rp.${30000 * book.bangku.length + 4000 * book.bangku.length}",
                       style: TextStyle(
                         fontSize: 12,
                         fontFamily: 'Railway',
@@ -422,19 +422,18 @@ class _CheckoutFState extends State<CheckoutF> {
                   width: 50,
                 ),
                 StreamBuilder<DocumentSnapshot>(
-                   stream: data.users.doc(id).snapshots(),
+                    stream: data.users.doc(id).snapshots(),
                     builder: (_, snapshot) {
-                    return Text(
-                      'Rp.${snapshot.data!.get("saldo").toString()}',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontFamily: 'Railway',
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    );
-                  }
-                ),
+                      return Text(
+                        'Rp.${snapshot.data!.get("saldo").toString()}',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Railway',
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    }),
               ],
             ),
 
@@ -449,19 +448,19 @@ class _CheckoutFState extends State<CheckoutF> {
                 InkWell(
                   onTap: () {
                     setState(() {
-                        book.bangku = const [];
-                        book.myBooking.fee =0;
-                        book.myBooking.harga_tiket =0;
-                        book.myBooking.id_login ='';
-                        book.myBooking.id_order ='';
-                        book.myBooking.judul_film ='';
-                        book.myBooking.jumlah_tiket =0;
-                        book.myBooking.kursi ='';
-                        book.myBooking.posterUrl ='';
-                        book.myBooking.tanggal ='';
-                        book.myBooking.tempat ='';
-                        book.myBooking.total_tiket =0;
-                        book.myBooking.waktu ='';
+                      book.bangku = const [];
+                      book.myBooking.fee = 0;
+                      book.myBooking.harga_tiket = 0;
+                      book.myBooking.id_login = '';
+                      book.myBooking.id_order = '';
+                      book.myBooking.judul_film = '';
+                      book.myBooking.jumlah_tiket = 0;
+                      book.myBooking.kursi = '';
+                      book.myBooking.posterUrl = '';
+                      book.myBooking.tanggal = '';
+                      book.myBooking.tempat = '';
+                      book.myBooking.total_tiket = 0;
+                      book.myBooking.waktu = '';
                     });
                     Navigator.pushNamed(context, '/mywallet');
                   },
@@ -470,8 +469,7 @@ class _CheckoutFState extends State<CheckoutF> {
                     style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'Railway',
-                      color: Colors.red,  
-                     
+                      color: Colors.red,
                     ),
                   ),
                 ),
@@ -486,7 +484,7 @@ class _CheckoutFState extends State<CheckoutF> {
                     Navigator.pushNamed(context, '/mywallet');
 
                     setState(() {});
-                  },  
+                  },
                 ),
               ],
             ),

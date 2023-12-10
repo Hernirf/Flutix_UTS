@@ -9,58 +9,50 @@ import 'package:utsmobile/page/mywallet.dart';
 import 'Olah_data.dart';
 import 'models/wallets.dart';
 
-
 FirebaseFirestore db = FirebaseFirestore.instance;
-class Wallets extends ChangeNotifier{
 
-    final wallett = db.collection('wallets');
-    // final data = Provider.of<olahData>(_, listen: false);
+class Wallets extends ChangeNotifier {
+  final wallett = db.collection('wallets');
+  // final data = Provider.of<olahData>(_, listen: false);
 
-    List<Wallets> _mywallet = [];
+  List<Wallets> _mywallet = [];
 
-
-  Future<void> tambahDataWalletKeFirestore(String id, String keterangan, int jumlah, String tanggal, String pukul, String id_book) async {
+  Future<void> tambahDataWalletKeFirestore(String id, String keterangan,
+      int jumlah, String tanggal, String pukul, String id_book) async {
     final CollectionReference wallet = db.collection('wallets');
-
 
     try {
       DocumentReference doc = await wallet.add({
-        'id_user' : id,
-        'jumlah' : jumlah,
+        'id_user': id,
+        'jumlah': jumlah,
         'keterangan': keterangan,
         'tanggal': tanggal,
         'pukul': pukul,
-        'id_book': id_book 
+        'id_book': id_book
       });
-      
-    
 
       // Disini Anda bisa melakukan operasi lain yang memanfaatkan nilai docID
     } catch (error) {
       print('Error: $error');
     }
-      notifyListeners();
-
+    notifyListeners();
   }
 
   Future<void> findDocumentIDByFieldValue(String id) async {
-     final CollectionReference wallet = db.collection('wallets');
+    final CollectionReference wallet = db.collection('wallets');
     await wallet
-    .where('id_user', isEqualTo: id)
-    .get()
-    .then((QuerySnapshot querySnapshot) {
+        .where('id_user', isEqualTo: id)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
       if (querySnapshot.docs.isNotEmpty) {
         // Loop melalui hasil query untuk mendapatkan ID dari dokumen yang cocok
-        querySnapshot.docs.forEach((doc) {
-        
-        });
+        querySnapshot.docs.forEach((doc) {});
       } else {
         print('No documents found with the specified field value');
       }
-    })
-    .catchError((error) {
+    }).catchError((error) {
       print('Error searching for documents: $error');
     });
     notifyListeners();
-}
+  }
 }
