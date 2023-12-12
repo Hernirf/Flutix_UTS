@@ -6,8 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../Booking_provider.dart';
 import '../Olah_data.dart';
-import '../api.dart';
-import '../models/movie.dart';
 
 class CheckoutF extends StatefulWidget {
   const CheckoutF({super.key});
@@ -19,13 +17,10 @@ class CheckoutF extends StatefulWidget {
 class _CheckoutFState extends State<CheckoutF> {
   @override
   Widget build(BuildContext context) {
-    double tinggi = MediaQuery.of(context).size.height;
     double lebar = MediaQuery.of(context).size.width;
-    final tmdbApi = Provider.of<TmdbApi>(context, listen: false);
     final book = Provider.of<Bookingg>(context, listen: false);
     final data = Provider.of<olahData>(context, listen: false);
     String id = data.idlogin;
-    final Movie movie = tmdbApi.myMovie;
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(

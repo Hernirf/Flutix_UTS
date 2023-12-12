@@ -34,9 +34,6 @@ class olahData extends ChangeNotifier {
         Map<String, dynamic> data =
             documentSnapshot.data() as Map<String, dynamic>;
 
-        // Mendapatkan nilai field tertentu
-        dynamic fieldValue = data[fieldName];
-
         // Mengembalikan nilai field
         return data[fieldName];
       } else {
@@ -58,12 +55,10 @@ class olahData extends ChangeNotifier {
 
   Future<void> signOut() async {
     if (userAuth != null) {
-      FirebaseAuth _auth = FirebaseAuth.instance;
-      await _auth.signOut();
+      FirebaseAuth auth = FirebaseAuth.instance;
+      await auth.signOut();
 
       // Setelah logout, Anda bisa mengosongkan variabel yang menyimpan data pengguna.
-      User? currentUser = _auth.currentUser;
-      currentUser = null;
       userAuth = null;
     }
   }
@@ -75,16 +70,16 @@ class olahData extends ChangeNotifier {
         .then((QuerySnapshot querySnapshot) {
       if (querySnapshot.docs.isNotEmpty) {
         // Loop melalui hasil query untuk mendapatkan ID dari dokumen yang cocok
-        querySnapshot.docs.forEach((doc) {
+        for (var doc in querySnapshot.docs) {
           _idLogin = doc.id;
-          print("ini adalah id login: " + _idLogin);
-          print(userAuth!.email);
-        });
+          debugPrint("ini adalah id login: $_idLogin");
+          debugPrint(userAuth!.email);
+        }
       } else {
-        print('No documents found with the specified field value');
+        debugPrint('No documents found with the specified field value');
       }
     }).catchError((error) {
-      print('Error searching for documents: $error');
+      debugPrint('Error searching for documents: $error');
     });
     notifyListeners();
   }
@@ -103,7 +98,7 @@ class olahData extends ChangeNotifier {
       _idSignUp = '';
       return userCredential.user;
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
       return null;
     }
   }
@@ -118,7 +113,7 @@ class olahData extends ChangeNotifier {
       userAuth = _fireAuth.currentUser;
       return userCredential.user;
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
       return null;
     }
   }
@@ -155,7 +150,7 @@ class olahData extends ChangeNotifier {
 
       // Disini Anda bisa melakukan operasi lain yang memanfaatkan nilai docID
     } catch (error) {
-      print('Error: $error');
+      debugPrint('Error: $error');
     }
     notifyListeners();
   }

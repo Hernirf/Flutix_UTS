@@ -14,7 +14,6 @@ class profile extends StatefulWidget {
 class _profileState extends State<profile> {
   @override
   Widget build(BuildContext context) {
-    double tinggi = MediaQuery.of(context).size.height;
     double lebar = MediaQuery.of(context).size.width;
     final data = Provider.of<olahData>(context, listen: false);
     // final tmdbApi = Provider.of<TmdbApi>(context, listen: false);
@@ -41,7 +40,7 @@ class _profileState extends State<profile> {
                 builder: (_, snapshot) {
                   return InkWell(
                     onTap: () {
-                      print(snapshot.data!.get("urlPoto"));
+                      debugPrint(snapshot.data!.get("urlPoto"));
                       // print('tes');
                     },
                     child: CircleAvatar(

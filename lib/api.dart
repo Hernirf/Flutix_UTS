@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:utsmobile/models/booking.dart';
 import 'models/movie.dart';
 import 'package:flutter/material.dart';
 
@@ -29,9 +28,6 @@ class TmdbApi extends ChangeNotifier {
           title: movie['title'],
           overview: movie['overview'],
           posterUrl: 'https://image.tmdb.org/t/p/w500${movie['poster_path']}',
-          // genres: movie['genres'],
-          // actors: movie['credits']['cast'],
-          // rating: movie['vote_average'],
         ));
       }
 

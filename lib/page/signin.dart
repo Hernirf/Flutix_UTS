@@ -8,7 +8,7 @@ class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
 
   @override
-  _SignInPageState createState() => _SignInPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
@@ -23,7 +23,6 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   void dispose() {
-    // Lakukan tindakan bersih di sini
     _email.dispose();
     _pass.dispose();
     super.dispose();
@@ -125,18 +124,17 @@ class _SignInPageState extends State<SignInPage> {
                       });
 
                       if (_email.value.text == "" || _pass.value.text == "") {
-                        alert msg = new alert();
-                        msg.showAlert(context, "seluruh textfield harus diisi");
+                        alert msg = alert();
+                        msg.showAlert(context, "Seluruh textfield harus diisi");
                       } else {
                         await data.login(_email.value.text, _pass.value.text);
-                        print(data.userAuth!.email);
+                        debugPrint(data.userAuth!.email);
                         if (data.userAuth != null) {
                           if (data.userAuth!.email == _email.text) {
                             await data.findDocumentIDByFieldValue();
-                            print(data.idlogin);
+                            debugPrint(data.idlogin);
+                            if (!context.mounted) return;
                             Navigator.pushNamed(context, "/bottomnav");
-                            _email.dispose();
-                            _pass.dispose();
                           }
                         }
                       }

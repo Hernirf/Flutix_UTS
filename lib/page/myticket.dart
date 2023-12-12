@@ -20,7 +20,6 @@ class _myticketState extends State<myticket> {
     final data = Provider.of<olahData>(context, listen: false);
     final BookProvider = Provider.of<Bookingg>(context, listen: false);
     double tinggi = MediaQuery.of(context).size.height;
-    double lebar = MediaQuery.of(context).size.width;
     return Scaffold(
       body: ListView(
         children: [
@@ -113,15 +112,12 @@ class _myticketState extends State<myticket> {
                           );
                         }).toList();
                         // print(bookList.length.toString()); // Tambahkan pernyataan print ini
-                        return Container(
-                          // color: Colors.black12,
-                          child: Expanded(
-                            child: ListView.builder(
-                                itemCount: bookList.length,
-                                itemBuilder: (context, index) {
-                                  return tiketTile(book: bookList[index]);
-                                }),
-                          ),
+                        return Expanded(
+                          child: ListView.builder(
+                              itemCount: bookList.length,
+                              itemBuilder: (context, index) {
+                                return tiketTile(book: bookList[index]);
+                              }),
                         );
                       }
                     }),

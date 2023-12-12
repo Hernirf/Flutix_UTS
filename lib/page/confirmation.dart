@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import '../Olah_data.dart';
 
 class ConfirmationPage extends StatelessWidget {
+  const ConfirmationPage({super.key});
+
   // final String fullName;
 
   // ConfirmationPage();
@@ -50,7 +52,7 @@ class ConfirmationPage extends StatelessWidget {
                     builder: (_, snapshot) {
                       return InkWell(
                         onTap: () {
-                          print(snapshot.data!.get("urlPoto"));
+                          debugPrint(snapshot.data!.get("urlPoto"));
                         },
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
@@ -83,7 +85,7 @@ class ConfirmationPage extends StatelessWidget {
                 TextButton(
                   onPressed: () async {
                     await data.findDocumentIDByFieldValue();
-                    //  Navigator.pushNamed(context, "/homemovies");
+                    if (!context.mounted) return;
                     Navigator.pushNamed(context, '/bottomnav');
 
                     // Lakukan tindakan yang sesuai saat tombol ditekan

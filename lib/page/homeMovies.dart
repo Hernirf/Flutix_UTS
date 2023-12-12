@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,29 +7,82 @@ import '../Olah_data.dart';
 import '../api.dart';
 import '../models/movie.dart';
 
-class homeMovies extends StatelessWidget {
-  homeMovies({super.key});
-
-  List daftarMovies = [
+class HomeMovies extends StatelessWidget {
+  final List daftarMovies = [
     Movies(gambar: "asset/pp9.jpg"),
     Movies(gambar: "asset/pp10.jpg"),
     Movies(gambar: "asset/pp11.jpg"),
     Movies(gambar: "asset/pp12.jpeg")
   ];
 
+  HomeMovies({super.key});
+
   @override
   Widget build(BuildContext context) {
-    double tinggi = MediaQuery.of(context).size.height;
     double lebar = MediaQuery.of(context).size.width;
-    final data = Provider.of<olahData>(context, listen: false);
-    final tmdbApi = Provider.of<TmdbApi>(context, listen: false);
+    double tinggi = MediaQuery.of(context).size.height;
+    final olahData data = Provider.of<olahData>(context, listen: false);
+    final TmdbApi tmdbApi = Provider.of<TmdbApi>(context, listen: false);
 
     var id = data.idlogin;
     return Scaffold(
       backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        backgroundColor: Colors.purple,
+        toolbarHeight: 80,
+        title: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+          child: Row(
+            children: [
+              StreamBuilder<DocumentSnapshot>(
+                  stream: data.users.doc(id).snapshots(),
+                  builder: (_, snapshot) {
+                    return InkWell(
+                      onTap: () {
+                        debugPrint(snapshot.data!.get("urlPoto"));
+                        debugPrint('tes');
+                      },
+                      child: CircleAvatar(
+                        backgroundImage:
+                            NetworkImage(snapshot.data!.get("urlPoto")),
+                        radius: 30,
+                      ),
+                    );
+                  }),
+              const SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  StreamBuilder<DocumentSnapshot>(
+                      stream: data.users.doc(id).snapshots(),
+                      builder: (_, snapshot) {
+                        return Text(snapshot.data!.get("fullname"),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'Railway',
+                              color: Colors.white,
+                            ));
+                      }),
+                  StreamBuilder<DocumentSnapshot>(
+                      stream: data.users.doc(id).snapshots(),
+                      builder: (_, snapshot) {
+                        return Text('Rp.${snapshot.data!.get("saldo")}',
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'Railway',
+                              color: Colors.white,
+                            ));
+                      }),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
       body: Container(
+        height: tinggi,
         width: lebar,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -43,56 +94,7 @@ class homeMovies extends StatelessWidget {
         ),
         child: ListView(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-              child: Row(
-                children: [
-                  StreamBuilder<DocumentSnapshot>(
-                      stream: data.users.doc(id).snapshots(),
-                      builder: (_, snapshot) {
-                        return InkWell(
-                          onTap: () {
-                            print(snapshot.data!.get("urlPoto"));
-                            print('tes');
-                          },
-                          child: CircleAvatar(
-                            backgroundImage:
-                                NetworkImage(snapshot.data!.get("urlPoto")),
-                            radius: 30,
-                          ),
-                        );
-                      }),
-                  SizedBox(width: 10),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      StreamBuilder<DocumentSnapshot>(
-                          stream: data.users.doc(id).snapshots(),
-                          builder: (_, snapshot) {
-                            return Text(snapshot.data!.get("fullname"),
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: 'Railway',
-                                  color: Colors.white,
-                                ));
-                          }),
-                      StreamBuilder<DocumentSnapshot>(
-                          stream: data.users.doc(id).snapshots(),
-                          builder: (_, snapshot) {
-                            return Text(
-                                'Rp.' + snapshot.data!.get("saldo").toString(),
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: 'Railway',
-                                  color: Colors.white,
-                                ));
-                          }),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
               child: Row(children: [
                 Text(
@@ -113,19 +115,19 @@ class homeMovies extends StatelessWidget {
                 ),
               ]),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             FutureBuilder(
                 future: tmdbApi.fetchNowPlayingMovies(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else {
                     List<Movie> movies = snapshot.data!;
-                    return Container(
+                    return SizedBox(
                       height: 130,
                       width: 250,
                       child: Expanded(
@@ -142,7 +144,7 @@ class homeMovies extends StatelessWidget {
                   }
                 }),
             const SizedBox(height: 50),
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
               child: Row(children: [
                 Text(
@@ -163,7 +165,7 @@ class homeMovies extends StatelessWidget {
                 )
               ]),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Row(
@@ -174,19 +176,19 @@ class homeMovies extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.all(2),
+                        padding: const EdgeInsets.all(2),
                         decoration: BoxDecoration(
                           color: Colors.blue,
                           borderRadius: BorderRadius.circular(4),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.handshake,
                           color: Colors.white,
                           size: 65,
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Text(
+                      const SizedBox(height: 5),
+                      const Text(
                         "Action",
                         style: TextStyle(
                           fontSize: 15,
@@ -202,19 +204,19 @@ class homeMovies extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.all(2),
+                        padding: const EdgeInsets.all(2),
                         decoration: BoxDecoration(
                           color: Colors.blue,
                           borderRadius: BorderRadius.circular(4),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.map_outlined,
                           color: Colors.white,
                           size: 65,
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Text(
+                      const SizedBox(height: 5),
+                      const Text(
                         "Adventure",
                         style: TextStyle(
                           fontSize: 15,
@@ -230,19 +232,19 @@ class homeMovies extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.all(2),
+                        padding: const EdgeInsets.all(2),
                         decoration: BoxDecoration(
                           color: Colors.blue,
                           borderRadius: BorderRadius.circular(4),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.heart_broken_rounded,
                           color: Colors.white,
                           size: 65,
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Text(
+                      const SizedBox(height: 5),
+                      const Text(
                         "Romance",
                         style: TextStyle(
                           fontSize: 15,
@@ -258,19 +260,19 @@ class homeMovies extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        padding: EdgeInsets.all(2),
+                        padding: const EdgeInsets.all(2),
                         decoration: BoxDecoration(
                           color: Colors.blue,
                           borderRadius: BorderRadius.circular(4),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.person_4,
                           color: Colors.white,
                           size: 65,
                         ),
                       ),
-                      SizedBox(height: 5),
-                      Text(
+                      const SizedBox(height: 5),
+                      const Text(
                         "Horror",
                         style: TextStyle(
                           fontSize: 15,
@@ -283,10 +285,10 @@ class homeMovies extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(vertical: 0, horizontal: 20),
               child: Row(children: [
                 Text(
@@ -307,17 +309,17 @@ class homeMovies extends StatelessWidget {
                 )
               ]),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             FutureBuilder(
                 future: tmdbApi.fetchComingSoonMovies(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else {
                     List<Movie> movies = snapshot.data!;
-                    return Container(
+                    return SizedBox(
                       height: 130,
                       width: 250,
                       child: Expanded(
@@ -333,14 +335,14 @@ class homeMovies extends StatelessWidget {
                     );
                   }
                 }),
-            SizedBox(
+            const SizedBox(
               height: 70,
             ),
             Container(
               decoration: BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.circular(5),
-                image: DecorationImage(
+                image: const DecorationImage(
                   image: AssetImage(
                       'asset/diskon.jpg'), // Ganti dengan path gambar Anda
                   fit: BoxFit.cover,
@@ -351,7 +353,7 @@ class homeMovies extends StatelessWidget {
               height: 120,
               // child: Image.asset("asset/diskon.jpg", fit: BoxFit.cover,),
             ),
-            SizedBox(
+            const SizedBox(
               height: 80,
             )
           ],

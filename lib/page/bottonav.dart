@@ -1,25 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:utsmobile/page/homeMovies.dart';
 import 'package:utsmobile/page/myticket.dart';
-import 'package:utsmobile/page/mywallet.dart';
 import 'package:utsmobile/page/profile.dart';
-import 'package:utsmobile/page/successtopup.dart';
-import 'package:utsmobile/page/ticketdetails.dart';
-import 'package:utsmobile/page/wallettopup.dart';
 
-import '../Olah_data.dart';
-
-class bottomnav extends StatefulWidget {
+class BottomNav extends StatefulWidget {
   final int idx;
-  const bottomnav({super.key, required this.idx});
+  const BottomNav({super.key, required this.idx});
 
   @override
-  State<bottomnav> createState() => _bottomnavState();
+  State<BottomNav> createState() => _BottomNavState();
 }
 
-class _bottomnavState extends State<bottomnav> {
-  @override
+class _BottomNavState extends State<BottomNav> {
   late int currentIndex;
 
   Widget image1 = Image.asset("asset/movies.png");
@@ -28,7 +20,7 @@ class _bottomnavState extends State<bottomnav> {
   Color color1 = Colors.white;
   Color color2 = const Color(0xFFA340A6);
   final List<Widget> _children = [
-    homeMovies(),
+    HomeMovies(),
     const myticket(),
     const profile(),
   ];
@@ -40,10 +32,6 @@ class _bottomnavState extends State<bottomnav> {
   }
 
   Widget build(BuildContext context) {
-    final data = Provider.of<olahData>(context, listen: false);
-
-    // int currentIndex = data.index;
-
     void button() {
       setState(() {
         if (currentIndex == 0) {

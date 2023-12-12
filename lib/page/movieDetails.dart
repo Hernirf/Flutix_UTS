@@ -2,8 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:utsmobile/Olah_data.dart';
-import '../api.dart';
+import 'package:utsmobile/api.dart';
 import '../models/movie.dart';
 
 class movieDetails extends StatefulWidget {
@@ -16,10 +15,8 @@ class movieDetails extends StatefulWidget {
 class _movieDetailsState extends State<movieDetails> {
   @override
   Widget build(BuildContext context) {
-    double tinggi = MediaQuery.of(context).size.height;
     double lebar = MediaQuery.of(context).size.width;
     final tmdbApi = Provider.of<TmdbApi>(context, listen: false);
-    final data = Provider.of<olahData>(context, listen: false);
 
     final Movie movie = tmdbApi.myMovie;
 
@@ -38,32 +35,30 @@ class _movieDetailsState extends State<movieDetails> {
           ),
         ),
         child: Column(children: [
-          Container(
-            child: Stack(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height / 3,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
-                    ),
-                  ),
-                  // ignore: prefer_interpolation_to_compose_strings
-                  child: Image.network(
-                    movie.posterUrl,
-                    fit: BoxFit.cover,
+          Stack(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height / 3,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10),
                   ),
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/bottomnav');
-                  },
-                  child: Image.asset("asset/back.png"),
+                // ignore: prefer_interpolation_to_compose_strings
+                child: Image.network(
+                  movie.posterUrl,
+                  fit: BoxFit.cover,
                 ),
-              ],
-            ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, '/bottomnav');
+                },
+                child: Image.asset("asset/back.png"),
+              ),
+            ],
           ),
           SizedBox(
             height: 10,

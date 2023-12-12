@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
-class successtopup extends StatefulWidget {
-  const successtopup({super.key});
+class SuccessTopUp extends StatefulWidget {
+  const SuccessTopUp({super.key});
 
   @override
-  State<successtopup> createState() => _successtopupState();
+  State<SuccessTopUp> createState() => _SuccessTopUpState();
 }
 
-class _successtopupState extends State<successtopup> {
+class _SuccessTopUpState extends State<SuccessTopUp> {
   @override
   Widget build(BuildContext context) {
-    double tinggi = MediaQuery.of(context).size.height;
     double lebar = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
@@ -58,14 +57,14 @@ class _successtopupState extends State<successtopup> {
               onPressed: () {
                 Navigator.pushNamed(context, '/mywallet');
               },
-              child: const Text(
-                "MyWallet",
-                style: TextStyle(color: Colors.white),
-              ),
               style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF6650CA),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 70, vertical: 15)),
+              child: const Text(
+                "MyWallet",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
             const SizedBox(
               height: 20,

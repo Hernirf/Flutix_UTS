@@ -9,46 +9,43 @@ class walletsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Row(
-
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            width: 65,
+            height: 65,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10), color: Colors.white),
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               SizedBox(
-                height: 20,),
-              Container(
-                width: 65,
-                height: 65,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white),
+              Text(
+                wallet.keterangan,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
               ),
-              SizedBox(
-                width: 20,
+              Text(
+                "${wallet.tanggal}, ${wallet.pukul}",
+                style: const TextStyle(color: Colors.white, fontSize: 14),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                   wallet.keterangan,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "${wallet.tanggal}, ${wallet.pukul}",
-                    style: TextStyle(
-                        color: Colors.white, fontSize: 14),
-                  ),
-                  Text(
-                    wallet.jumlah.toString(),
-                    style: TextStyle(
-                        color: Colors.white, fontSize: 14),
-                  ),
-                ],
+              Text(
+                wallet.jumlah.toString(),
+                style: const TextStyle(color: Colors.white, fontSize: 14),
               ),
             ],
           ),
+        ],
+      ),
     );
   }
 }

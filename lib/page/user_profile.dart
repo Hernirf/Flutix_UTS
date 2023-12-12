@@ -41,6 +41,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
     FirebaseFirestore db = FirebaseFirestore.instance;
     CollectionReference users = db.collection("users");
     final data = Provider.of<olahData>(context, listen: false);
+    double tinggi = MediaQuery.of(context).size.height;
+    double lebar = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
@@ -56,8 +58,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
         backgroundColor: const Color.fromARGB(255, 149, 0, 194),
       ),
       body: Container(
-        width: 360,
-        height: 740,
+        width: lebar,
+        height: tinggi,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -110,15 +112,15 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             genre.add("war");
                           },
                           child: Container(
-                            child: Image.asset(
-                              "asset/war.jpg",
-                              fit: BoxFit.cover,
-                            ),
                             height: 80,
                             width: 140,
                             decoration: BoxDecoration(
                                 color: Colors.grey,
                                 borderRadius: BorderRadius.circular(20)),
+                            child: Image.asset(
+                              "asset/war.jpg",
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -129,13 +131,13 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             genre.add("drama");
                           },
                           child: Container(
-                            child: Image.asset("asset/band.jpg",
-                                fit: BoxFit.cover),
                             height: 80,
                             width: 140,
                             decoration: BoxDecoration(
                                 color: Colors.grey,
                                 borderRadius: BorderRadius.circular(20)),
+                            child: Image.asset("asset/band.jpg",
+                                fit: BoxFit.cover),
                           ),
                         ),
                       ],
@@ -159,13 +161,13 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             genre.add("horor");
                           },
                           child: Container(
-                            child: Image.asset("asset/chucky1.png",
-                                fit: BoxFit.cover),
                             height: 80,
                             width: 140,
                             decoration: BoxDecoration(
                                 color: Colors.grey,
                                 borderRadius: BorderRadius.circular(20)),
+                            child: Image.asset("asset/chucky1.png",
+                                fit: BoxFit.cover),
                           ),
                         ),
                         const SizedBox(
@@ -176,13 +178,13 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             genre.add("Fantasi");
                           },
                           child: Container(
-                            child: Image.asset("asset/thomas.jpg",
-                                fit: BoxFit.cover),
                             height: 80,
                             width: 140,
                             decoration: BoxDecoration(
                                 color: Colors.grey,
                                 borderRadius: BorderRadius.circular(20)),
+                            child: Image.asset("asset/thomas.jpg",
+                                fit: BoxFit.cover),
                           ),
                         ),
                       ],
@@ -206,13 +208,13 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             genre.add("cinema");
                           },
                           child: Container(
-                            child: Image.asset("asset/movies.png",
-                                fit: BoxFit.cover),
                             height: 80,
                             width: 140,
                             decoration: BoxDecoration(
                                 color: Colors.grey,
                                 borderRadius: BorderRadius.circular(20)),
+                            child: Image.asset("asset/movies.png",
+                                fit: BoxFit.cover),
                           ),
                         ),
                         const SizedBox(
@@ -223,14 +225,14 @@ class _UserProfilePageState extends State<UserProfilePage> {
                             genre.add("romen");
                           },
                           child: Container(
-                            child: Image.asset(
-                                "asset/Cinderella or Monster.jpg",
-                                fit: BoxFit.cover),
                             height: 80,
                             width: 140,
                             decoration: BoxDecoration(
                                 color: Colors.grey,
                                 borderRadius: BorderRadius.circular(20)),
+                            child: Image.asset(
+                                "asset/Cinderella or Monster.jpg",
+                                fit: BoxFit.cover),
                           ),
                         ),
                       ],
@@ -269,10 +271,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     TextButton(
                       onPressed: () {
                         for (var bahasass in bahasa) {
-                          bahasas = bahasas + '$bahasass, ';
+                          bahasas = '$bahasas$bahasass, ';
                         }
                         for (var genreek in genre) {
-                          genree = genree + '$genreek, ';
+                          genree = '$genree$genreek, ';
                         }
                         users
                             .doc(data.idsignup)

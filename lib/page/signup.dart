@@ -1,15 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utsmobile/Olah_data.dart';
-import 'package:utsmobile/page/user_profile.dart';
 import 'dart:html' as html;
 import 'dart:typed_data';
 
 class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
@@ -28,7 +28,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   void dispose() {
-    // Lakukan tindakan bersih di sini
+    _username.dispose();
+    _conpass.dispose(); // Lakukan tindakan bersih di sini
     _email.dispose();
     _pass.dispose();
     super.dispose();
@@ -58,6 +59,8 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<olahData>(context, listen: false);
+    double tinggi = MediaQuery.of(context).size.height;
+    double lebar = MediaQuery.of(context).size.width;
 
     //  DocumentReference doc = doc.id;
 
@@ -66,218 +69,213 @@ class _SignUpPageState extends State<SignUpPage> {
         leading: InkWell(
           onTap: () async {
             await data.signOut();
+            if (!context.mounted) return;
             Navigator.pushNamed(context, "/signin");
           },
           child: Image.asset("asset/back.png"),
         ),
         backgroundColor: const Color.fromARGB(255, 149, 0, 194),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(255, 149, 0, 194),
-              Color.fromARGB(255, 39, 26, 84),
-            ],
+      body: SingleChildScrollView(
+        child: Container(
+          width: lebar,
+          height: tinggi,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromARGB(255, 149, 0, 194),
+                Color.fromARGB(255, 39, 26, 84),
+              ],
+            ),
           ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              InkWell(
-                onTap: () {
-                  _uploadImage();
-                },
-                child: const Padding(
-                  padding: EdgeInsets.only(top: 30),
-                  child: CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Color.fromARGB(255, 102, 80, 202),
-                    // Icon karakter orang default
-                    child: Icon(
-                      Icons.person,
-                      size: 50,
-                      color: Color.fromARGB(255, 153, 153, 153),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      _uploadImage();
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.only(top: 30),
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundColor: Color.fromARGB(255, 102, 80, 202),
+                        // Icon karakter orang default
+                        child: Icon(
+                          Icons.person,
+                          size: 50,
+                          color: Color.fromARGB(255, 153, 153, 153),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              const Column(
-                children: [
-                  Text(
-                    'Create Your',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Text(
-                    'Account',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                const Column(
                   children: [
-                    const Text(
-                      'Full Name',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
-                    TextFormField(
-                      controller: _username,
-                      decoration: const InputDecoration(
-                        hintText: 'Type Here',
-                        hintStyle:
-                            TextStyle(color: Color.fromARGB(255, 92, 195, 232)),
-                        border: OutlineInputBorder(
-                            //     borderSide: BorderSide(
-                            //   color: Color.fromARGB(255, 208, 165, 203),
-                            // )
-                            ),
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 102, 80, 202),
+                    Text(
+                      'Create Your',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      'Email Address',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
-                    TextFormField(
-                      controller: _email,
-                      decoration: const InputDecoration(
-                        hintText: 'Type Here',
-                        hintStyle:
-                            TextStyle(color: Color.fromARGB(255, 92, 195, 232)),
-                        border: OutlineInputBorder(),
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 102, 80, 202),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      'Password',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
-                    TextFormField(
-                      controller: _pass,
-                      decoration: const InputDecoration(
-                        hintText: 'Type Here',
-                        hintStyle:
-                            TextStyle(color: Color.fromARGB(255, 92, 195, 232)),
-                        border: OutlineInputBorder(),
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 102, 80, 202),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      'Confirm Password',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
-                    TextFormField(
-                      controller: _conpass,
-                      decoration: const InputDecoration(
-                        hintText: 'Type Here',
-                        hintStyle:
-                            TextStyle(color: Color.fromARGB(255, 92, 195, 232)),
-                        border: OutlineInputBorder(),
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 102, 80, 202),
+                    Text(
+                      'Account',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
                       ),
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton(
-                    onPressed: () async {
-                      // print("object1");
-                      // await data.signOut();
-                      // print("object2");
-
-                      if (_pass.text == _conpass.text) {
-                        await data.signUp(_email.text, _pass.text);
-                        print("object3");
-
-                        if (data.userAuth != null) {
-                          print("object5");
-
-                          print(_email.text);
-                          print("objec6");
-
-                          print(data.userAuth!.email);
-
-                          if (data.userAuth!.email == _email.text) {
-                            print("objec7");
-                            if (_image != null) {
-                              final ref = FirebaseStorage.instance
-                                  .ref()
-                                  .child('user/$namaFile');
-                              await ref.putData(_image!);
-                              String downloadUrl = await FirebaseStorage
-                                  .instance
-                                  .ref()
-                                  .child('user/$namaFile')
-                                  .getDownloadURL();
-                              print(downloadUrl);
-                              await data.tambahDataKeFirestore(_username.text,
-                                  _email.text, _pass.text, downloadUrl);
-                            } else {
-                              await data.tambahDataKeFirestore(
-                                  _username.text, _email.text, _pass.text, "");
-                            }
-
-                            data.findDocumentIDByFieldValue();
-                            print(data.idsignup + "ggg");
-
-                            Navigator.pushNamed(context, "/userprofile");
-                            _username.dispose();
-                            _email.dispose();
-                            _pass.dispose();
-                            _conpass.dispose();
-                          }
-                        } else {
-                          //  print(data.userAuth!.email);
-                          print("tidak ada");
-                        }
-
-                        //  print(SignUpPage().data);
-                      }
-                    },
-                    child: const Row(
-                      children: [
-                        Text(
-                          'Continue To Sign Up',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 163, 64, 166)),
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Full Name',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                      TextFormField(
+                        controller: _username,
+                        decoration: const InputDecoration(
+                          hintText: 'Type Here',
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 92, 195, 232)),
+                          border: OutlineInputBorder(),
+                          filled: true,
+                          fillColor: Color.fromARGB(255, 102, 80, 202),
                         ),
-                        Icon(
-                          Icons.arrow_circle_right,
-                          size: 35,
-                          color: Color.fromARGB(255, 163, 64, 166),
+                      ),
+                      const SizedBox(height: 10),
+                      const Text(
+                        'Email Address',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                      TextFormField(
+                        controller: _email,
+                        decoration: const InputDecoration(
+                          hintText: 'Type Here',
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 92, 195, 232)),
+                          border: OutlineInputBorder(),
+                          filled: true,
+                          fillColor: Color.fromARGB(255, 102, 80, 202),
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 10),
+                      const Text(
+                        'Password',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                      TextFormField(
+                        controller: _pass,
+                        decoration: const InputDecoration(
+                          hintText: 'Type Here',
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 92, 195, 232)),
+                          border: OutlineInputBorder(),
+                          filled: true,
+                          fillColor: Color.fromARGB(255, 102, 80, 202),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      const Text(
+                        'Confirm Password',
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
+                      TextFormField(
+                        controller: _conpass,
+                        decoration: const InputDecoration(
+                          hintText: 'Type Here',
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 92, 195, 232)),
+                          border: OutlineInputBorder(),
+                          filled: true,
+                          fillColor: Color.fromARGB(255, 102, 80, 202),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () async {
+                        if (_pass.text == _conpass.text) {
+                          await data.signUp(_email.text, _pass.text);
+                          debugPrint("object3");
+
+                          if (data.userAuth != null) {
+                            debugPrint("object5");
+
+                            debugPrint(_email.text);
+                            debugPrint("objec6");
+
+                            debugPrint(data.userAuth!.email);
+
+                            if (data.userAuth!.email == _email.text) {
+                              debugPrint("objec7");
+                              if (_image != null) {
+                                final ref = FirebaseStorage.instance
+                                    .ref()
+                                    .child('user/$namaFile');
+                                await ref.putData(_image!);
+                                String downloadUrl = await FirebaseStorage
+                                    .instance
+                                    .ref()
+                                    .child('user/$namaFile')
+                                    .getDownloadURL();
+                                debugPrint(downloadUrl);
+                                await data.tambahDataKeFirestore(_username.text,
+                                    _email.text, _pass.text, downloadUrl);
+                              } else {
+                                await data.tambahDataKeFirestore(_username.text,
+                                    _email.text, _pass.text, "");
+                              }
+
+                              data.findDocumentIDByFieldValue();
+                              debugPrint("${data.idsignup}ggg");
+                              if (!context.mounted) return;
+                              Navigator.pushNamed(context, "/userprofile");
+                            }
+                          } else {
+                            //  debugPrint(data.userAuth!.email);
+                            debugPrint("tidak ada");
+                          }
+
+                          //  debugPrint(SignUpPage().data);
+                        }
+                      },
+                      child: const Row(
+                        children: [
+                          Text(
+                            'Continue To Sign Up',
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 163, 64, 166)),
+                          ),
+                          Icon(
+                            Icons.arrow_circle_right,
+                            size: 35,
+                            color: Color.fromARGB(255, 163, 64, 166),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:utsmobile/page/homeMovies.dart';
 
 import '../api.dart';
 import '../models/movie.dart';
 
 class homeMoviesTile extends StatelessWidget {
   final Movie movies;
-  homeMoviesTile({super.key, required this.movies});
+  const homeMoviesTile({super.key, required this.movies});
   @override
   Widget build(BuildContext context) {
     final tmdbApi = Provider.of<TmdbApi>(context, listen: false);
-    
 
     return GestureDetector(
       onTap: () {

@@ -5,14 +5,14 @@ import 'package:utsmobile/WalletProvider.dart';
 
 import '../Olah_data.dart';
 
-class wallettopup extends StatefulWidget {
-  const wallettopup({super.key});
+class WalletTopUp extends StatefulWidget {
+  const WalletTopUp({super.key});
 
   @override
-  State<wallettopup> createState() => _wallettopupState();
+  State<WalletTopUp> createState() => _WalletTopUpState();
 }
 
-class _wallettopupState extends State<wallettopup> {
+class _WalletTopUpState extends State<WalletTopUp> {
   final TextEditingController _saldo = TextEditingController();
 
   @override
@@ -492,11 +492,11 @@ class _wallettopupState extends State<wallettopup> {
                   const Padding(padding: EdgeInsets.symmetric(vertical: 20)),
                   ElevatedButton(
                     onPressed: () async {
-                      dynamic saldo_awal =
+                      dynamic saldoAwal =
                           await data.getFieldById("saldo", data.idlogin);
-                      print(saldo_awal.toString());
+                      debugPrint(saldoAwal.toString());
                       await users.doc(data.idlogin).update(
-                          {'saldo': int.parse(_saldo.text) + saldo_awal});
+                          {'saldo': int.parse(_saldo.text) + saldoAwal});
                       await walletProvider.tambahDataWalletKeFirestore(
                           data.idlogin,
                           "Top Up",
@@ -504,7 +504,7 @@ class _wallettopupState extends State<wallettopup> {
                           '22 November 2023',
                           '10.00',
                           '');
-
+                      if (!context.mounted) return;
                       Navigator.pushNamed(context, "/successtopup");
                     },
                     style: ElevatedButton.styleFrom(

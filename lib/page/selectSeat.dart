@@ -1,7 +1,3 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utsmobile/Olah_data.dart';
@@ -59,12 +55,12 @@ class selectSeatState extends State<selectSeat> {
           child: Image.asset("asset/back.png"),
         ),
         titleSpacing: 50,
-        backgroundColor: Color.fromARGB(255, 149, 0, 194),
+        backgroundColor: const Color.fromARGB(255, 149, 0, 194),
       ),
       body: Container(
         width: lebar,
         height: tinggi,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -81,18 +77,18 @@ class selectSeatState extends State<selectSeat> {
             children: [
               Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 30,
                       ),
                       Container(
                         width: lebar - 60,
                         height: 20,
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.purpleAccent,
                           borderRadius: BorderRadius.circular(4),
@@ -102,10 +98,10 @@ class selectSeatState extends State<selectSeat> {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
-              Center(
+              const Center(
                 child: Text(
                   'Layar Bioskop',
                   style: TextStyle(
@@ -116,12 +112,12 @@ class selectSeatState extends State<selectSeat> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Column(
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SizedBox(
@@ -223,7 +219,7 @@ class selectSeatState extends State<selectSeat> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -239,7 +235,7 @@ class selectSeatState extends State<selectSeat> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -255,7 +251,7 @@ class selectSeatState extends State<selectSeat> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -271,7 +267,7 @@ class selectSeatState extends State<selectSeat> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -287,7 +283,7 @@ class selectSeatState extends State<selectSeat> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -303,7 +299,7 @@ class selectSeatState extends State<selectSeat> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -319,7 +315,7 @@ class selectSeatState extends State<selectSeat> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -335,14 +331,14 @@ class selectSeatState extends State<selectSeat> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   Column(
                     children: [
                       Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 30,
                           ),
                           Container(
@@ -353,10 +349,10 @@ class selectSeatState extends State<selectSeat> {
                               color: Colors.blueAccent,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 15,
                           ),
-                          Text(
+                          const Text(
                             'Booked',
                             style: TextStyle(
                               fontSize: 12,
@@ -364,7 +360,7 @@ class selectSeatState extends State<selectSeat> {
                               color: Color.fromARGB(255, 157, 35, 213),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 30,
                           ),
                           Container(
@@ -372,13 +368,13 @@ class selectSeatState extends State<selectSeat> {
                             height: 20,
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.black),
-                              color: Color.fromARGB(255, 183, 187, 195),
+                              color: const Color.fromARGB(255, 183, 187, 195),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 15,
                           ),
-                          Text(
+                          const Text(
                             'Available',
                             style: TextStyle(
                               fontSize: 12,
@@ -386,7 +382,7 @@ class selectSeatState extends State<selectSeat> {
                               color: Color.fromARGB(255, 157, 35, 213),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 30,
                           ),
                           Container(
@@ -396,10 +392,10 @@ class selectSeatState extends State<selectSeat> {
                                 border: Border.all(color: Colors.black),
                                 color: Colors.deepPurple),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 15,
                           ),
-                          Text(
+                          const Text(
                             'Selected',
                             style: TextStyle(
                               fontSize: 12,
@@ -409,13 +405,13 @@ class selectSeatState extends State<selectSeat> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 40,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 35,
                           ),
                           InkWell(
@@ -423,12 +419,12 @@ class selectSeatState extends State<selectSeat> {
                               book.bangku = bangkuu;
 
                               for (var kursii in bangkuu) {
-                                kursi = kursi + '$kursii, ';
+                                kursi = '$kursi$kursii, ';
                               }
                               bookMovie.kursi = kursi;
                               dynamic saldo_awal = await data.getFieldById(
                                   "saldo", data.idlogin);
-                              // print(saldo_awal.toString());
+                              // debugPrint(saldo_awal.toString());
 
                               bookMovie.fee = 4000 * book.bangku.length;
                               bookMovie.harga_tiket =
@@ -437,12 +433,14 @@ class selectSeatState extends State<selectSeat> {
                                   bookMovie.fee + bookMovie.harga_tiket;
                               if (int.parse(saldo_awal) >=
                                   bookMovie.total_tiket) {
+                                if (!context.mounted) return;
                                 Navigator.pushNamed(context, '/checkout');
                               } else {
+                                if (!context.mounted) return;
                                 Navigator.pushNamed(context, '/checkoutf');
                               }
                             },
-                            child: Text(
+                            child: const Text(
                               "Confirm Your Book",
                               style: TextStyle(
                                 fontSize: 18,
@@ -451,7 +449,7 @@ class selectSeatState extends State<selectSeat> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           IconButton(
@@ -462,9 +460,9 @@ class selectSeatState extends State<selectSeat> {
                               book.bangku = bangkuu;
                               dynamic saldo_awal = await data.getFieldById(
                                   "saldo", data.idlogin);
-                              // print(saldo_awal.toString());
+                              // debugPrint(saldo_awal.toString());
                               for (var kursii in bangkuu) {
-                                kursi = kursi + '$kursii, ';
+                                kursi = '$kursi$kursii, ';
                               }
                               bookMovie.kursi = kursi;
                               bookMovie.fee = 4000 * book.bangku.length;
@@ -473,17 +471,19 @@ class selectSeatState extends State<selectSeat> {
                               bookMovie.total_tiket =
                                   bookMovie.fee + bookMovie.harga_tiket;
                               bookMovie.jumlah_tiket = book.bangku.length;
-                              print(saldo_awal.toString());
+                              debugPrint(saldo_awal.toString());
                               if (saldo_awal >= bookMovie.total_tiket) {
                                 setState(() {
                                   // bangkuu = [];
                                   kursi = '';
                                 });
+                                if (!context.mounted) return;
                                 Navigator.pushNamed(context, '/checkout');
                               } else {
                                 setState(() {
                                   bangkuu = [];
                                 });
+                                if (!context.mounted) return;
                                 Navigator.pushNamed(context, '/checkoutf');
                               }
 
@@ -509,18 +509,18 @@ class selectSeatState extends State<selectSeat> {
         setState(() {
           seatStatus[index] = true;
           if (seatStatus[index] == false) {
-            bangkuu.remove('${alphabet + (index + 1).toString()}');
+            bangkuu.remove(alphabet + (index + 1).toString());
           } else {
-            bangkuu.add('${alphabet + (index + 1).toString()}');
+            bangkuu.add(alphabet + (index + 1).toString());
           }
         });
       } else {
         setState(() {
           seatStatus[index] = !seatStatus[index];
           if (seatStatus[index] == false) {
-            bangkuu.remove('${alphabet + (index + 1).toString()}');
+            bangkuu.remove(alphabet + (index + 1).toString());
           } else {
-            bangkuu.add('${alphabet + (index + 1).toString()}');
+            bangkuu.add(alphabet + (index + 1).toString());
           }
         });
       }
@@ -528,63 +528,63 @@ class selectSeatState extends State<selectSeat> {
       setState(() {
         seatStatus2[index] = !seatStatus2[index];
         if (seatStatus2[index] == false) {
-          bangkuu.remove('${alphabet + (index + 1).toString()}');
+          bangkuu.remove(alphabet + (index + 1).toString());
         } else {
-          bangkuu.add('${alphabet + (index + 1).toString()}');
+          bangkuu.add(alphabet + (index + 1).toString());
         }
       });
     } else if (alphabet == "C") {
       setState(() {
         seatStatus3[index] = !seatStatus3[index];
         if (seatStatus3[index] == false) {
-          bangkuu.remove('${alphabet + (index + 1).toString()}');
+          bangkuu.remove(alphabet + (index + 1).toString());
         } else {
-          bangkuu.add('${alphabet + (index + 1).toString()}');
+          bangkuu.add(alphabet + (index + 1).toString());
         }
       });
     } else if (alphabet == "D") {
       setState(() {
         seatStatus4[index] = !seatStatus4[index];
         if (seatStatus4[index] == false) {
-          bangkuu.remove('${alphabet + (index + 1).toString()}');
+          bangkuu.remove(alphabet + (index + 1).toString());
         } else {
-          bangkuu.add('${alphabet + (index + 1).toString()}');
+          bangkuu.add(alphabet + (index + 1).toString());
         }
       });
     } else if (alphabet == "E") {
       setState(() {
         seatStatus5[index] = !seatStatus5[index];
         if (seatStatus5[index] == false) {
-          bangkuu.remove('${alphabet + (index + 1).toString()}');
+          bangkuu.remove(alphabet + (index + 1).toString());
         } else {
-          bangkuu.add('${alphabet + (index + 1).toString()}');
+          bangkuu.add(alphabet + (index + 1).toString());
         }
       });
     } else if (alphabet == "F") {
       setState(() {
         seatStatus6[index] = !seatStatus6[index];
         if (seatStatus6[index] == false) {
-          bangkuu.remove('${alphabet + (index + 1).toString()}');
+          bangkuu.remove(alphabet + (index + 1).toString());
         } else {
-          bangkuu.add('${alphabet + (index + 1).toString()}');
+          bangkuu.add(alphabet + (index + 1).toString());
         }
       });
     } else if (alphabet == "G") {
       setState(() {
         seatStatus7[index] = !seatStatus7[index];
         if (seatStatus7[index] == false) {
-          bangkuu.remove('${alphabet + (index + 1).toString()}');
+          bangkuu.remove(alphabet + (index + 1).toString());
         } else {
-          bangkuu.add('${alphabet + (index + 1).toString()}');
+          bangkuu.add(alphabet + (index + 1).toString());
         }
       });
     } else if (alphabet == "H") {
       setState(() {
         seatStatus8[index] = !seatStatus8[index];
         if (seatStatus8[index] == false) {
-          bangkuu.remove('${alphabet + (index + 1).toString()}');
+          bangkuu.remove(alphabet + (index + 1).toString());
         } else {
-          bangkuu.add('${alphabet + (index + 1).toString()}');
+          bangkuu.add(alphabet + (index + 1).toString());
         }
       });
     }
@@ -595,7 +595,7 @@ class SeatWidget extends StatelessWidget {
   final int index;
   final bool isReserved;
 
-  SeatWidget({required this.index, required this.isReserved});
+  const SeatWidget({super.key, required this.index, required this.isReserved});
 
   @override
   Widget build(BuildContext context) {

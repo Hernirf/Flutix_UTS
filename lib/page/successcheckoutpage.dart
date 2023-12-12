@@ -6,13 +6,12 @@ class SuccessCheckoutPage extends StatefulWidget {
   const SuccessCheckoutPage({Key? key}) : super(key: key);
 
   @override
-  _SuccessCheckoutPageState createState() => _SuccessCheckoutPageState();
+  State<SuccessCheckoutPage> createState() => _SuccessCheckoutPageState();
 }
 
 class _SuccessCheckoutPageState extends State<SuccessCheckoutPage> {
   @override
   Widget build(BuildContext context) {
-    double tinggi = MediaQuery.of(context).size.height;
     double lebar = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.transparent, // Atur latar belakang transparan

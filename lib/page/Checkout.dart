@@ -1,39 +1,26 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utsmobile/Booking_provider.dart';
 import 'package:utsmobile/Olah_data.dart';
 import 'package:utsmobile/page/selectPlaceDate.dart';
-import 'CheckoutF.dart';
-import 'selectSeat.dart';
 
-import '../api.dart';
-import '../models/booking.dart';
-import '../models/movie.dart';
-
-class Checkout extends StatefulWidget {
-  const Checkout({super.key});
+class CheckOut extends StatefulWidget {
+  const CheckOut({super.key});
 
   @override
-  State<Checkout> createState() => _CheckoutState();
+  State<CheckOut> createState() => _CheckOutState();
 }
 
-class _CheckoutState extends State<Checkout> {
+class _CheckOutState extends State<CheckOut> {
   @override
   Widget build(BuildContext context) {
-    selectPlaceDate resettanggal = new selectPlaceDate();
-    double tinggi = MediaQuery.of(context).size.height;
     double lebar = MediaQuery.of(context).size.width;
-    final tmdbApi = Provider.of<TmdbApi>(context, listen: false);
     final book = Provider.of<Bookingg>(context, listen: false);
     final data = Provider.of<olahData>(context, listen: false);
     String id = data.idlogin;
-    final Movie movie = tmdbApi.myMovie;
     FirebaseFirestore db = FirebaseFirestore.instance;
     CollectionReference users = db.collection("users");
-    selectSeat resetkursi = new selectSeat();
 
     return Scaffold(
       appBar: AppBar(
@@ -44,11 +31,11 @@ class _CheckoutState extends State<Checkout> {
           child: Image.asset("asset/back.png"),
         ),
         titleSpacing: 50,
-        backgroundColor: Color.fromARGB(255, 149, 0, 194),
+        backgroundColor: const Color.fromARGB(255, 149, 0, 194),
       ),
       body: Container(
         width: lebar,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -62,10 +49,10 @@ class _CheckoutState extends State<Checkout> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Row(
+            const Row(
               children: [
                 SizedBox(
                   width: 30,
@@ -87,13 +74,13 @@ class _CheckoutState extends State<Checkout> {
                 ),
               ],
             ),
-            Row(
+            const Row(
               children: [
                 SizedBox(
                   width: 30,
                 ),
                 Text(
-                  "before checkout",
+                  "before CheckOut",
                   style: TextStyle(
                       fontSize: 20,
                       fontFamily: 'Railway',
@@ -109,18 +96,18 @@ class _CheckoutState extends State<Checkout> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  SizedBox(width: 30),
+                  const SizedBox(width: 30),
                   Container(
                     height: 100,
                     width: 100,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
@@ -129,23 +116,23 @@ class _CheckoutState extends State<Checkout> {
                     child: Image.network(book.myBooking.posterUrl,
                         fit: BoxFit.cover),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         book.myBooking.judul_film,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 20,
                           fontFamily: 'Railway',
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
-                      Text(
+                      const Text(
                         "Horror - Korean",
                         style: TextStyle(
                           fontSize: 12,
@@ -159,14 +146,14 @@ class _CheckoutState extends State<Checkout> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Center(
               child: Container(
                 width: 320,
                 height: 5,
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.purpleAccent,
                   borderRadius: BorderRadius.circular(4),
@@ -175,7 +162,7 @@ class _CheckoutState extends State<Checkout> {
             ),
 
             //isi
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
 
@@ -183,10 +170,10 @@ class _CheckoutState extends State<Checkout> {
               children: [
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
-                    Text(
+                    const Text(
                       "ID Order",
                       style: TextStyle(
                         fontSize: 12,
@@ -195,12 +182,12 @@ class _CheckoutState extends State<Checkout> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 50,
                     ),
                     Text(
                       book.myBooking.id_order,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                         fontFamily: 'Railway',
                         color: Color.fromARGB(255, 186, 165, 246),
@@ -209,15 +196,15 @@ class _CheckoutState extends State<Checkout> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
-                    Text(
+                    const Text(
                       "Cinema",
                       style: TextStyle(
                         fontSize: 12,
@@ -226,12 +213,12 @@ class _CheckoutState extends State<Checkout> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 50,
                     ),
                     Text(
                       book.myBooking.tempat,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                         fontFamily: 'Railway',
                         color: Color.fromARGB(255, 186, 165, 246),
@@ -240,15 +227,15 @@ class _CheckoutState extends State<Checkout> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
-                    Text(
+                    const Text(
                       "Date & Time",
                       style: TextStyle(
                         fontSize: 12,
@@ -257,12 +244,12 @@ class _CheckoutState extends State<Checkout> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 25,
                     ),
                     Text(
                       '${book.myBooking.tanggal}, ${book.myBooking.waktu}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                         fontFamily: 'Railway',
                         color: Color.fromARGB(255, 186, 165, 246),
@@ -271,15 +258,15 @@ class _CheckoutState extends State<Checkout> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
-                    Text(
+                    const Text(
                       "Seat",
                       style: TextStyle(
                         fontSize: 12,
@@ -288,12 +275,12 @@ class _CheckoutState extends State<Checkout> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 70,
                     ),
                     Text(
                       book.myBooking.kursi,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                         fontFamily: 'Railway',
                         color: Color.fromARGB(255, 186, 165, 246),
@@ -302,15 +289,15 @@ class _CheckoutState extends State<Checkout> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
-                    Text(
+                    const Text(
                       "Ticket",
                       style: TextStyle(
                         fontSize: 12,
@@ -319,12 +306,12 @@ class _CheckoutState extends State<Checkout> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 60,
                     ),
                     Text(
                       "Rp.30.000 x ${book.bangku.length}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                         fontFamily: 'Railway',
                         color: Color.fromARGB(255, 186, 165, 246),
@@ -333,15 +320,15 @@ class _CheckoutState extends State<Checkout> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
-                    Text(
+                    const Text(
                       "Fees",
                       style: TextStyle(
                         fontSize: 12,
@@ -350,12 +337,12 @@ class _CheckoutState extends State<Checkout> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 65,
                     ),
                     Text(
                       "Rp.4.000 x ${book.bangku.length}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                         fontFamily: 'Railway',
                         color: Color.fromARGB(255, 186, 165, 246),
@@ -364,15 +351,15 @@ class _CheckoutState extends State<Checkout> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
-                    Text(
+                    const Text(
                       "Total",
                       style: TextStyle(
                         fontSize: 12,
@@ -381,12 +368,12 @@ class _CheckoutState extends State<Checkout> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 65,
                     ),
                     Text(
                       "Rp.${30000 * book.bangku.length + 4000 * book.bangku.length}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                         fontFamily: 'Railway',
                         color: Color.fromARGB(255, 186, 165, 246),
@@ -397,7 +384,7 @@ class _CheckoutState extends State<Checkout> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
 
@@ -405,23 +392,23 @@ class _CheckoutState extends State<Checkout> {
               child: Container(
                 width: 320,
                 height: 5,
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: Colors.purpleAccent,
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
 
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 30,
                 ),
-                Text(
+                const Text(
                   "Saldo Wallet",
                   style: TextStyle(
                     fontSize: 15,
@@ -430,7 +417,7 @@ class _CheckoutState extends State<Checkout> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 50,
                 ),
                 StreamBuilder<DocumentSnapshot>(
@@ -438,7 +425,7 @@ class _CheckoutState extends State<Checkout> {
                     builder: (_, snapshot) {
                       return Text(
                         'Rp.${snapshot.data!.get("saldo").toString()}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 15,
                           fontFamily: 'Railway',
                           color: Color.fromARGB(255, 186, 165, 246),
@@ -449,21 +436,21 @@ class _CheckoutState extends State<Checkout> {
               ],
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 70,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 100,
                 ),
                 InkWell(
                   onTap: () async {
-                    dynamic saldo_awal =
+                    dynamic saldoAwal =
                         await data.getFieldById("saldo", data.idlogin);
                     await users.doc(data.idlogin).update(
-                        {'saldo': saldo_awal - book.myBooking.total_tiket});
+                        {'saldo': saldoAwal - book.myBooking.total_tiket});
                     book.tambahDataBookKeFirestore(
                         id,
                         book.myBooking.judul_film,
@@ -493,11 +480,11 @@ class _CheckoutState extends State<Checkout> {
                       book.myBooking.total_tiket = 0;
                       book.myBooking.waktu = '';
                     });
-
-                    Navigator.pushNamed(context, '/successcheckout');
+                    if (!context.mounted) return;
+                    Navigator.pushNamed(context, '/successCheckOut');
                   },
-                  child: Text(
-                    "Checkout Now",
+                  child: const Text(
+                    "CheckOut Now",
                     style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'Railway',
@@ -505,7 +492,7 @@ class _CheckoutState extends State<Checkout> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 IconButton(
@@ -513,10 +500,10 @@ class _CheckoutState extends State<Checkout> {
                   color: Colors.blue,
                   iconSize: 40,
                   onPressed: () async {
-                    dynamic saldo_awal =
+                    dynamic saldoAwal =
                         await data.getFieldById("saldo", data.idlogin);
                     await users.doc(data.idlogin).update(
-                        {'saldo': saldo_awal - book.myBooking.total_tiket});
+                        {'saldo': saldoAwal - book.myBooking.total_tiket});
                     book.tambahDataBookKeFirestore(
                         id,
                         book.myBooking.judul_film,
@@ -551,11 +538,8 @@ class _CheckoutState extends State<Checkout> {
                     for (int i = 0; i < 4; i++) {
                       chooseHari[i] = false;
                     }
-                    // for(int i =0;i<7;i++){
-
-                    // }
-
-                    Navigator.pushNamed(context, '/successcheckout');
+                    if (!context.mounted) return;
+                    Navigator.pushNamed(context, '/successCheckOut');
                   },
                 ),
               ],

@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,13 +5,12 @@ import 'package:utsmobile/Booking_provider.dart';
 import 'package:utsmobile/WalletProvider.dart';
 import 'package:utsmobile/api.dart';
 import 'package:utsmobile/firebase_options.dart';
-import 'package:utsmobile/page/Checkout.dart';
+import 'package:utsmobile/page/checkout.dart';
 import 'package:utsmobile/page/CheckoutF.dart';
 import 'package:utsmobile/page/bottonav.dart';
 import 'package:utsmobile/page/confirmation.dart';
 import 'package:utsmobile/page/edit_profile.dart';
 import 'package:utsmobile/page/homeMovies.dart';
-import 'package:utsmobile/komponen/homeMoviesTile.dart';
 import 'package:utsmobile/page/movieDetails.dart';
 import 'package:utsmobile/page/myticket.dart';
 import 'package:utsmobile/page/mywallet.dart';
@@ -28,7 +26,6 @@ import 'package:utsmobile/page/ticketdetails.dart';
 import 'package:utsmobile/page/user_profile.dart';
 import 'package:utsmobile/page/wallettopup.dart';
 import 'package:utsmobile/Olah_data.dart';
-import 'package:utsmobile/test.dart';
 
 void main() async {
   await Firebase.initializeApp(
@@ -44,7 +41,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => Wallets()),
       ],
       // Inisialisasi DataProvider
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -79,35 +76,34 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // home:  profile(),
       routes: {
-        '/': (context) => SplashScreen(),
-        '/bottomnav': (context) => bottomnav(
+        '/': (context) => const SplashScreen(),
+        '/bottomnav': (context) => const BottomNav(
               idx: 0,
             ),
-        '/bottomnav1': (context) => bottomnav(
+        '/bottomnav1': (context) => const BottomNav(
               idx: 1,
             ),
-        '/bottomnav2': (context) => bottomnav(
+        '/bottomnav2': (context) => const BottomNav(
               idx: 2,
             ),
-        '/myticket': (context) => myticket(),
-        '/signin': (context) => SignInPage(),
-        '/signup': (context) => SignUpPage(),
-        '/profile': (context) => profile(),
-        '/checkout': (context) => Checkout(),
-        '/checkoutf': (context) => CheckoutF(),
-        '/confirm': (context) => ConfirmationPage(),
-        '/homemovies': (context) => homeMovies(),
-        '/movedetails': (context) => movieDetails(),
-        '/myticket': (context) => myticket(),
-        '/mywallet': (context) => mywallet(),
-        '/selectdate': (context) => selectPlaceDate(),
-        '/selectseat': (context) => selectSeat(),
-        '/successcheckout': (context) => SuccessCheckoutPage(),
-        '/successtopup': (context) => successtopup(),
-        '/ticketdetails': (context) => ticketdetails(),
+        '/myticket': (context) => const myticket(),
+        '/signin': (context) => const SignInPage(),
+        '/signup': (context) => const SignUpPage(),
+        '/profile': (context) => const profile(),
+        '/checkout': (context) => const CheckOut(),
+        '/checkoutf': (context) => const CheckoutF(),
+        '/confirm': (context) => const ConfirmationPage(),
+        '/homemovies': (context) => HomeMovies(),
+        '/movedetails': (context) => const movieDetails(),
+        '/mywallet': (context) => const mywallet(),
+        '/selectdate': (context) => const selectPlaceDate(),
+        '/selectseat': (context) => const selectSeat(),
+        '/successcheckout': (context) => const SuccessCheckoutPage(),
+        '/successtopup': (context) => const SuccessTopUp(),
+        '/ticketdetails': (context) => const ticketdetails(),
         '/userprofile': (context) => UserProfilePage(),
-        '/wallettopuup': (context) => wallettopup(),
-        '/editProfile': (context) => edit_profile(),
+        '/wallettopuup': (context) => const WalletTopUp(),
+        '/editProfile': (context) => const edit_profile(),
       },
       initialRoute: '/',
 

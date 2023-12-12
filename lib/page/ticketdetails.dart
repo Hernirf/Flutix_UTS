@@ -7,9 +7,6 @@ import 'package:utsmobile/Booking_provider.dart';
 import 'package:utsmobile/Olah_data.dart';
 import 'package:utsmobile/models/booking.dart';
 
-import '../api.dart';
-import '../models/movie.dart';
-
 class ticketdetails extends StatefulWidget {
   const ticketdetails({super.key});
 

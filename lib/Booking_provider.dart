@@ -7,7 +7,7 @@ import 'package:utsmobile/models/booking.dart';
 FirebaseFirestore db = FirebaseFirestore.instance;
 
 class Bookingg extends ChangeNotifier {
-  Booking _myBooking = Booking(); // Objek yang akan disimpan
+  final Booking _myBooking = Booking(); // Objek yang akan disimpan
 
   Booking get myBooking => _myBooking;
   List<String> bangku = [];
@@ -41,7 +41,7 @@ class Bookingg extends ChangeNotifier {
     final CollectionReference bookMovie = db.collection('MyBookMovie');
 
     try {
-      DocumentReference doc = await bookMovie.add({
+      await bookMovie.add({
         'id_user': id,
         'judul_film': judul_film,
         'tanggal': tanggal,
@@ -58,7 +58,7 @@ class Bookingg extends ChangeNotifier {
 
       // Disini Anda bisa melakukan operasi lain yang memanfaatkan nilai docID
     } catch (error) {
-      print('Error: $error');
+      debugPrint('Error: $error');
     }
     notifyListeners();
   }

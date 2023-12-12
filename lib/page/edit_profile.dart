@@ -3,21 +3,21 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:utsmobile/Olah_data.dart';
-import 'package:utsmobile/page/bottonav.dart';
-import 'package:utsmobile/page/user_profile.dart';
 import 'dart:html' as html;
 import 'dart:typed_data';
 
 class edit_profile extends StatefulWidget {
+  const edit_profile({super.key});
+
   @override
   _edit_profileState createState() => _edit_profileState();
 }
 
 class _edit_profileState extends State<edit_profile> {
-  TextEditingController _username = TextEditingController();
-  TextEditingController _email = TextEditingController();
-  TextEditingController _pass = TextEditingController();
-  TextEditingController _conpass = TextEditingController();
+  final TextEditingController _username = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _pass = TextEditingController();
+  final TextEditingController _conpass = TextEditingController();
   Uint8List? _image;
   String namaFile = '';
 
@@ -29,8 +29,8 @@ class _edit_profileState extends State<edit_profile> {
 
   Future<List<String>> fetchData() async {
     final data = Provider.of<olahData>(context, listen: false);
-    print(data.idlogin);
-    print(await data.getFieldById("fullname", data.idlogin));
+    debugPrint(data.idlogin);
+    debugPrint(await data.getFieldById("fullname", data.idlogin));
     // Contoh penundaan untuk mensimulasikan operasi async
     List<String> edit = [];
     edit.add(await data.getFieldById("fullname", data.idlogin));
@@ -85,6 +85,7 @@ class _edit_profileState extends State<edit_profile> {
         leading: InkWell(
           onTap: () async {
             await data.signOut();
+            if (!context.mounted) return;
             Navigator.pushNamed(context, "/bottomnav");
           },
           child: Image.asset("asset/back.png"),
@@ -201,9 +202,9 @@ class _edit_profileState extends State<edit_profile> {
               ElevatedButton(
                 onPressed: () async {
                   if (_pass.text == _conpass.text) {
-                    print("object");
+                    debugPrint("object");
                     if (data.userAuth != null) {
-                      print("object2");
+                      debugPrint("object2");
 
                       if (_image != null) {
                         final ref = FirebaseStorage.instance
@@ -214,19 +215,20 @@ class _edit_profileState extends State<edit_profile> {
                             .ref()
                             .child('user/$namaFile')
                             .getDownloadURL();
-                        print(downloadUrl);
+                        debugPrint(downloadUrl);
                         await users.doc(data.idlogin).update({
                           'fullname': _username.text,
                           'pass': _pass.text,
                           'urlPoto': downloadUrl
                         });
                       } else {
-                        print("object3");
+                        debugPrint("object3");
 
                         await users.doc(data.idlogin).update(
                             {'fullname': _username.text, 'pass': _pass.text});
-                        print("object4");
+                        debugPrint("object4");
                       }
+                      if (!context.mounted) return;
                       Navigator.pushNamed(context, '/bottomnav2');
 
                       // Navigator.push(context,

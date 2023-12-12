@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../Olah_data.dart';
 
 class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<olahData>(context, listen: false);
@@ -27,7 +29,7 @@ class SplashScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 width: 200,
                 child: Image.asset(
                   "asset/logo.png",
