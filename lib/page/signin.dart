@@ -119,9 +119,7 @@ class _SignInPageState extends State<SignInPage> {
                 children: [
                   TextButton(
                     onPressed: () async {
-                      setState(() {
-                        // dispose();
-                      });
+                      setState(() {});
 
                       if (_email.value.text == "" || _pass.value.text == "") {
                         alert msg = alert();
